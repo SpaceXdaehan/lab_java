@@ -25,7 +25,7 @@ public class VariableMain04 {
         // x + y, x - y, x * y, x / y, x % y 결과를 출력.
         // 사칙연산의 결과를 저장할 변수를 선언하고 덧셈 결과를 저장.
         int result = x + y;
-        System.out.println("+: " + result);
+        System.out.println("+: " + (x + y));
         
         result = x - y;
         System.out.println("-: " + result);
@@ -35,6 +35,10 @@ public class VariableMain04 {
         
         result = x / y; // (정수) / (정수) = 나눈 몫
         System.out.println("/: " + result);
+        // 나누기 연산자:
+        // 1. (정수) / (정수) = 나눈 몫
+        // 2. (실수) / (실수) = 소수점까지 나누기 계산.
+        // (실수) / (정수) 또는 (정수) / (실수)도 2번 계산 결과와 같음.
         
         result = x % y; // (정수) % (정수) = 나눈 나머지
         System.out.println("%: " + result);
