@@ -11,6 +11,13 @@ public class LoopMain03 {
             2 x 8 = 16
             2 x 9 = 18
          */
+        for (int n = 1; n < 10; n++) {
+            // System.out.println("2 x " + n + " = " + (2 * n));
+            System.out.printf("2 x %d = %d\n", n, 2 * n);
+        }
+        // System.out.printf(문자열 템플릿/포맷, 템플릿을 채울 값들);
+        // %d: 정수, %f: 실수, %s: 문자열
+        // \n: 줄바꿈(new line), \t: 탭(tab)
         
         /* 문제2. 아래와 같이 출력하세요.
             1     2     3     4     5     6     7     8     9     10
@@ -24,6 +31,12 @@ public class LoopMain03 {
             81    82    83    84    85    86    87    88    89    90
             91    92    93    94    95    96    97    98    99    100
          */
+        for (int n = 1; n <= 100; n++) {
+            System.out.print(n + "\t");
+            if (n % 10 == 0) {
+                System.out.println(); // 줄바꿈
+            }
+        }
 
     }
 
