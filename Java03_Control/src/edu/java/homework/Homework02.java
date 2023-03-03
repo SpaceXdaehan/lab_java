@@ -1,6 +1,6 @@
 package edu.java.homework;
 
-public class Homework2 {
+public class Homework02 {
 
     public static void main(String[] args) {
         // 369 게임 출력
