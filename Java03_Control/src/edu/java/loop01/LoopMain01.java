@@ -1,4 +1,4 @@
-package edu.java.loop1;
+package edu.java.loop01;
 
 public class LoopMain01 {
 
