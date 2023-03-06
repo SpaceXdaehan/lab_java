@@ -8,7 +8,7 @@ public class LoopMain04 {
         for (int n = 1; n <= 5; n++) {
             if (n == 3) {
                 break;
-                // break가 포함된 반복문을 종료.
+                // break가 포함된 가장 가까운 반복문을 종료.
             }
             System.out.println(n);
         }
