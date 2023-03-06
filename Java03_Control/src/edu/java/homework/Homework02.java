@@ -17,6 +17,22 @@ public class Homework02 {
             *   *   *   *   *   *   *   *   *   100
          */
         
+        for (int n = 1; n <= 100; n++) {
+            int n1 = n % 10; // n을 10으로 나눈 나머지 -> 1의 자릿수
+            int n10 = n / 10; // n을 10으로 나눈 몫 -> 10의 자릿수
+            
+            // 숫자를 출력할 것인 지, "*"를 출력할 것인 지.
+            if (n1 == 3 || n1 == 6 || n1 == 9 || n10 == 3 || n10 == 6 || n10 == 9) {
+                System.out.print("*\t");
+            } else {
+                System.out.print(n + "\t");
+            }
+            
+            // 줄바꿈을 할 것인 지, 아닌 지
+            if (n % 10 == 0) {
+                System.out.println(); // 줄바꿈
+            }
+        }
 
     }
 
