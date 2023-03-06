@@ -20,7 +20,7 @@ public class Homework01 {
         System.out.println("[1] 바위");
         System.out.println("[2] 보");
         System.out.println("-----------------");
-        System.out.println("선택>>>");
+        System.out.print("선택>>> ");
 
         Scanner scanner = new Scanner(System.in);
         int user = scanner.nextInt();
@@ -28,8 +28,35 @@ public class Homework01 {
         // print(computer : user)
         System.out.println("computer(" + computer + ") : user(" + user + ")");
 
-        // TODO: 누가 이겼는 지 결과를 출력하세요.
+        // 누가 이겼는 지 결과를 출력하세요.
+        if (user == 0) { // 사용자: 가위
+            if (computer == 0) { // 컴: 가위 
+                System.out.println("비김");
+            } else if (computer == 1) { // 컴: 바위
+                System.out.println("컴퓨터 승");
+            } else { // 컴: 보
+                System.out.println("사용자 승");
+            }
+        } else if (user == 1) { // 사용자: 바위
+            if (computer == 0) { // 컴: 가위 
+                System.out.println("사용자 승");
+            } else if (computer == 1) { // 컴: 바위
+                System.out.println("비김");
+            } else { // 컴: 보
+                System.out.println("컴퓨터 승");
+            }
+        } else { // 사용자: 보
+            if (computer == 0) { // 컴: 가위 
+                System.out.println("컴퓨터 승");
+            } else if (computer == 1) { // 컴: 바위
+                System.out.println("사용자 승");
+            } else { // 컴: 보
+                System.out.println("비김");
+            }
+        }
         
-    }
+        // 방법 2:
+        
+    } // end main
 
 }
