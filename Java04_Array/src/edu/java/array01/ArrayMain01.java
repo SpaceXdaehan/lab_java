@@ -43,6 +43,12 @@ public class ArrayMain01 {
             System.out.println(numbers[i]);
         }
         
+        System.out.println("----------");
+        // 향상된 for 문(enhanced for statement). for-each 구문.
+        for (int x : numbers) {
+            System.out.println(x);
+        }
+        
     }
 
 }
