@@ -18,15 +18,23 @@ public class LoopMain10 {
             int menu = scanner.nextInt();
             switch (menu) {
             case 1:
+                System.out.print("예금액> ");
+                int money = scanner.nextInt();
+                balance += money; // balance = balance + money;
                 break;
             case 2:
+                System.out.print("출금액> ");
+                int money2 = scanner.nextInt();
+                balance -= money2; // balance = balance - money2;
                 break;
             case 3:
+                System.out.println("잔고: " + balance);
                 break;
             case 4:
                 run = false;
                 break; // switch 문을 종료
             default:
+                System.out.println("메뉴를 잘못 입력했습니다. 다시 선택하세요.");
             }
             
         }
