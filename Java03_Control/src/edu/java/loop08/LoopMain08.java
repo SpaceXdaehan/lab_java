@@ -22,6 +22,38 @@ public class LoopMain08 {
                 System.out.printf("%d x %d = %d\n", x, y, x * y);
             }
         }
+        
+        System.out.println("\n==========\n");
+        
+        int a = 2;
+        while (a < 10) {
+            System.out.println("--- " + a + "단 ---");
+            
+            int b = 1;
+            while (b < 10) {
+                System.out.printf("%d x %d = %d\n", a, b, a * b);
+                if (a == b) {
+                    break;
+                }
+                b++;
+            }
+            
+            a++;
+        }
+        
+        System.out.println("\n==========\n");
+        a = 2;
+        while (a < 10) {
+            System.out.println("--- " + a + "단 ---");
+            
+            int b = 1;
+            while (b <= a) {
+                System.out.printf("%d x %d = %d\n", a, b, a * b);
+                b++;
+            }
+            
+            a++;
+        }
 
     }
 
