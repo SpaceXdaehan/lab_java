@@ -19,7 +19,7 @@ public class MethodMain03 {
      * mean
      * 정수 배열의 모든 원소들의 평균을 리턴.
      * @param arr 정수 배열.
-     * @return 배열 arr의 모든 원소들의 평균.
+     * @return 배열 arr의 모든 원소들의 평균(double).
      */
     // TODO
     
