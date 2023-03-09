@@ -1,5 +1,7 @@
 package edu.java.method02;
 
+import java.util.Random;
+
 public class MethodMain02 {
     
     public static void main(String[] args) {
@@ -20,6 +22,13 @@ public class MethodMain02 {
         
         System.out.println(isEven(4));
         System.out.println(isEven(5));
+        
+        int[] array = makeArray(5);
+        System.out.println(array);
+        for (int x : array) {
+            System.out.print(x + " ");
+        }
+        System.out.println();
     }
     
     /**
@@ -98,6 +107,15 @@ public class MethodMain02 {
      * @param length 배열의 길이. 양의 정수.
      * @return length개의 난수들로 초기화된 정수 배열.
      */
-    // TODO
+    public static int[] makeArray(int length) {
+        int[] array = new int[length];
+        
+        Random random = new Random();
+        for (int i = 0; i < array.length; i++) {
+            array[i] = random.nextInt();
+        }
+        
+        return array;
+    }
     
 }
