@@ -67,7 +67,7 @@ public class ArrayMain09 {
             }
         }
         System.out.println("min = " + min);
-    
+
     }
 
 }
