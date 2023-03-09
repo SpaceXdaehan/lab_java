@@ -8,6 +8,18 @@ public class MethodMain02 {
         // 같은 클래스 안에서 작성한 메서드인 경우에는 메서드 이름으로만 호출하면 됨.
         double result = add(1, 2); // 메서드 호출. argument - 1, 2.
         System.out.println(result);
+        
+        result = subtract(1, 2);
+        System.out.println(result);
+        
+        result = multiply(2, 3);
+        System.out.println(result);
+        
+        result = divide(1, 2);
+        System.out.println(result);
+        
+        System.out.println(isEven(4));
+        System.out.println(isEven(5));
     }
     
     /**
@@ -33,7 +45,9 @@ public class MethodMain02 {
      * @param y double.
      * @return x - y.
      */
-    // TODO
+    public static double subtract(double x, double y) {
+        return x - y;
+    }
     
     /**
      * multiply
@@ -42,7 +56,9 @@ public class MethodMain02 {
      * @param y double.
      * @return x * y.
      */
-    // TODO
+    public static double multiply(double x, double y) {
+        return x * y;
+    }
     
     /**
      * divide
@@ -51,7 +67,9 @@ public class MethodMain02 {
      * @param y double.
      * @return x / y.
      */
-    // TODO
+    public static double divide(double x, double y) {
+        return x / y;
+    }
     
     /**
      * isEven
@@ -59,7 +77,19 @@ public class MethodMain02 {
      * @param n 짝수인 지 홀수인 지 검사할 정수.
      * @return n이 짝수이면 true, 그렇지 않으면 false.
      */
-    // TODO
+    public static boolean isEven(int n) {
+        return n % 2 == 0;
+        
+//        boolean result = false; // 짝수인 지, 홀수인 지를 저장할 변수.
+//        
+//        if (n % 2 == 0) {
+//            result = true;
+//        } else {
+//            result = false;
+//        }
+//        
+//        return result;
+    }
     
     /**
      * makeArray
