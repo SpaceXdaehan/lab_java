@@ -20,10 +20,9 @@ import java.util.Random;
 // [수식어] 리턴타입 메서드이름([파라미터 선언, ...]) { ... }
 // 메서의 리턴 값이 없는 경우에는 리턴 타입을 void라고 선언함.
 public class MethodMain01 {
-
+    
     // main 메서드(method): 프로그램 시작점.
     public static void main(String[] args) {
-        
         System.out.println("안녕하세요~");
         //-> println() 메서드 호출 -> 호출 결과: 콘솔 창에 문자열을 출력.
 
