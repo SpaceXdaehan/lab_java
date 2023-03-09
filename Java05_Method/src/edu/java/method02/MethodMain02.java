@@ -26,4 +26,48 @@ public class MethodMain02 {
         return x + y; // 리턴 문장. x + y -> 리턴 값.
     }
     
+    /**
+     * subtract
+     * 숫자 2개를 전달받아서, 뺄셈의 결과를 반환.
+     * @param x double.
+     * @param y double.
+     * @return x - y.
+     */
+    // TODO
+    
+    /**
+     * multiply
+     * 숫자 2개 전달받아서 곱셈 결과를 반환.
+     * @param x double.
+     * @param y double.
+     * @return x * y.
+     */
+    // TODO
+    
+    /**
+     * divide
+     * 숫자 2개를 전달받아서, 나눗셈 결과를 반환.
+     * @param x double.
+     * @param y double.
+     * @return x / y.
+     */
+    // TODO
+    
+    /**
+     * isEven
+     * 정수가 짝수인 지 아닌 지를 리턴하는 메서드.
+     * @param n 짝수인 지 홀수인 지 검사할 정수.
+     * @return n이 짝수이면 true, 그렇지 않으면 false.
+     */
+    // TODO
+    
+    /**
+     * makeArray
+     * argument로 전달된 배열의 길이 크기의 정수 배열을 생성하고,
+     * 임의의 난수들로 배열을 초기화해서 리턴하는 함수.
+     * @param length 배열의 길이. 양의 정수.
+     * @return length개의 난수들로 초기화된 정수 배열.
+     */
+    // TODO
+    
 }
