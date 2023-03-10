@@ -45,6 +45,11 @@ public class MethodMain03 {
         int maxIndex = maxAt(array);
         System.out.println("max index = " + maxIndex);
         
+        int minValue = min(array);
+        System.out.println("min = " + minValue);
+        
+        int minIndex = minAt(array);
+        System.out.println("min index = " + minIndex);
     }
     
     /**
@@ -115,7 +120,14 @@ public class MethodMain03 {
      * @param arr 정수 배열.
      * @return 배열 arr의 원소들 중 최솟값.
      */
-    // TODO
+    public static int min(int[] arr) {
+        int minVal = arr[0];
+        for (int x : arr) {
+            minVal = (x < minVal) ? x : minVal;
+        }
+        
+        return minVal;
+    }
     
     /**
      * minAt
@@ -124,6 +136,18 @@ public class MethodMain03 {
      * @return 배열 arr의 원소들 중 최솟값의 인덱스.
      * 최솟값이 여러개 있는 경우, 첫번째 최솟값의 인덱스.
      */
-    // TODO
+    public static int minAt(int[] arr) {
+        int minVal = min(arr); // 최솟값을 찾음.
+        
+        int index = 0; // 배열의 인덱스
+        for (index = 0; index < arr.length; index++) {
+            // 배열의 원소들을 순서대로 반복하면서, 그 원소가 최솟값인 지 검사.
+            if (arr[index] == minVal) {
+                break; // 최솟값을 찾았으면 반복을 종료.
+            }
+        }
+        
+        return index; // 반복문이 종료됐을 때의 인덱스를 리턴.
+    }
     
 }
