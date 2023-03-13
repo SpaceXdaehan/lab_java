@@ -25,9 +25,25 @@ public class ClassMain02 {
         
         tv1.powerOnOff();
         
+        System.out.println("-------------------");
+        
         BasicTv tv2 = new BasicTv();
         System.out.println("tv2 전원: " + tv2.powerOn);
-        tv2.powerOnOff();
+        tv2.powerOnOff(); // powerOn: false -> true
+        
+        for (int i = 0; i < 10; i++) {
+            tv2.channelUp();
+        }
+        for (int i = 0; i < 10; i++) {
+            tv2.channelDown();
+        }
+        
+        for (int i = 0; i < 10; i++) {
+            tv2.volumeUp();
+        }
+        for (int i = 0; i < 10; i++) {
+            tv2.volumeDown();
+        }
     }
 
 }

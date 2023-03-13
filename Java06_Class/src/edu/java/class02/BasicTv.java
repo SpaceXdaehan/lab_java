@@ -12,6 +12,8 @@ package edu.java.class02;
 
 public class BasicTv {
     // field - 클래스의 모든 메서드에서 사용 가능.
+    private static final int MAX = 5;
+    private static final int MIN = 0;
     boolean powerOn; // TV의 전원 상태(true: ON, false: OFF)를 저장하는 필드.
     int channel; // TV의 현재 채널을 저장하는 필드.
     int volume; // TV의 현재 음량을 저장하는 필드.
@@ -28,22 +30,47 @@ public class BasicTv {
     }
     
     public void channelUp() {
-        channel++; // 현재 채널 번호를 1 증가.
+        if (powerOn) { // TV 전원이 ON(true)인 경우에
+            if (channel < MAX) { // TV 채널 번호가 최댓값보다 작은 경우
+                channel++; // 현재 채널 번호를 1 증가.
+            } else { // TV 채널 번호가 최댓값보다 크거나 같으면 
+                channel = MIN; // TV 채널의 최솟값으로 바꿈(채널을 순환시킴).
+            }
+        }
+        // Ctrl+Shift+F: 코드 포맷팅(들여쓰기)
+        
         System.out.println("채널: " + channel);
     }
     
     public void channelDown() {
-        channel--; // 현재 채널 번호를 1 감소.
+        if (powerOn) { // TV가 켜져 있을 때
+            if (channel > MIN) { // 현재 채널이 0보다 클 때(최솟값에 도달하지 않았을 때)
+                channel--; // 현재 채널 번호를 1 감소.
+            } else { // 채널이 0보다 작거나 같을 때(최솟값에 도달했을 때)
+                channel = MAX; // 현재 채널을 채널 최댓값으로 변경(채널을 순환).
+            }
+        }
+        
         System.out.println("채널: " + channel);
     }
     
     public void volumeUp() {
-        volume++; // 현재 음량을 1 증가.
+        if (powerOn) {
+            if (volume < MAX) {
+                volume++; // 현재 음량을 1 증가.
+            }
+        }
+        
         System.out.println("음량: " + volume);
     }
     
     public void volumeDown() {
-        volume--; // 현재 음량을 1 감소.
+        if (powerOn) {
+            if (volume > MIN) {
+                volume--; // 현재 음량을 1 감소.
+            }
+        }
+        
         System.out.println("음량: " + volume);
     }
     
