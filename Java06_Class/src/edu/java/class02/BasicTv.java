@@ -11,9 +11,20 @@ package edu.java.class02;
 // - 대문자로 시작하는 camel 표기법을 권장.
 
 public class BasicTv {
-    // field
+    // field - 클래스의 모든 메서드에서 사용 가능.
     boolean powerOn; // TV의 전원 상태(true: ON, false: OFF)를 저장하는 필드.
     int channel; // TV의 현재 채널을 저장하는 필드.
     int volume; // TV의 현재 음량을 저장하는 필드.
+    
+    // method
+    public void powerOnOff() {
+        if (powerOn) { // TV가 켜져 있으면
+            powerOn = false; // TV를 끔.
+            System.out.println("TV OFF");
+        } else { // TV가 꺼져 있으면
+            powerOn = true; // TV를 켬.
+            System.out.println("TV ON");
+        }
+    }
     
 }
