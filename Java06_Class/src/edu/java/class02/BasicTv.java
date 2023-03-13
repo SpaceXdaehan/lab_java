@@ -27,4 +27,24 @@ public class BasicTv {
         }
     }
     
+    public void channelUp() {
+        channel++; // 현재 채널 번호를 1 증가.
+        System.out.println("채널: " + channel);
+    }
+    
+    public void channelDown() {
+        channel--; // 현재 채널 번호를 1 감소.
+        System.out.println("채널: " + channel);
+    }
+    
+    public void volumeUp() {
+        volume++; // 현재 음량을 1 증가.
+        System.out.println("음량: " + volume);
+    }
+    
+    public void volumeDown() {
+        volume--; // 현재 음량을 1 감소.
+        System.out.println("음량: " + volume);
+    }
+    
 }
