@@ -21,7 +21,7 @@ public class Account {
     // TODO
     
     /**
-     * 출력(withdraw)
+     * 출금(withdraw).
      * 
      * @param amount 출금액(double).
      * @return 입금 후 잔액.
