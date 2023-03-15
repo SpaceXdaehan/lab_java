@@ -1,7 +1,5 @@
 package edu.java.modifier01;
 
-import java.math.MathContext;
-
 import edu.java.class08.Account; // 다른 패키지의 클래스를 사용할 때
 
 // 클래스 멤버(필드, 생성자, 메서드)의 접근 제한 수식어(access modifier):
