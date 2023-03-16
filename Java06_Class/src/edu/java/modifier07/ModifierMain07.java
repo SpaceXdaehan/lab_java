@@ -22,6 +22,14 @@ package edu.java.modifier07;
 
 public class ModifierMain07 {
 
+    public static void test1() {
+        System.out.println("test 1");
+    }
+    
+    public void test2() {
+        System.out.println("test 2");
+    }
+    
     public static void main(String[] args) {
         // static 메서드는 (객체 생성 여부와 상관 없이) 클래스 이름을 사용해서 호출.
         Test.printStaticInfo();
@@ -36,6 +44,14 @@ public class ModifierMain07 {
         // 참조변수 test를 사용해서 인스턴스 변수(필드)를 사용.
         test.x = 100;
         test.printInfo();
+        
+        test1(); // static 메서드는 static 멤버(필드, 메서드)를 사용할 수 있음.
+        //test2();
+        //-> static 메서드에서 인스턴스 멤버(필드, 메서드)를 사용할 수 없음!
+        
+        // ModifierMain07 타입이 객체를 먼저 생성.
+        ModifierMain07 app = new ModifierMain07();
+        app.test2();
     }
 
 }
