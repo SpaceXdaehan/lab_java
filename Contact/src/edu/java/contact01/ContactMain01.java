@@ -24,10 +24,45 @@ public class ContactMain01 {
             case 0: // 프로그램 종료
                 run = false;
                 break;
+            case 1: // 새 연락처 저장
+                app.insertNewContact();
+                break;
+            case 2: // 연락처 전체 목록 보여주기
+                break;
+            case 3: // 배열의 인덱스로 연락처 검색하기
+                break;
+            case 4: // 연락처 이름/전화번호/이메일 정보 수정하기
+                break;
+            case 5: // 배열의 인덱스로 연락처 삭제하기.
+                break;
+            default:
+                System.out.println("메인 메뉴 번호를 확인하세요...");
             }
         }
 
         System.out.println("***** 프로그램 종료 *****");
+    }
+    
+    public void insertNewContact() {
+        System.out.println();
+        System.out.println("--- 새 연락처 저장 ---");
+        System.out.print("이름 입력> ");
+        String name = scanner.nextLine(); // 공백을 포함해서 엔터가 입력될 때까지 모든 문자열을 읽음.
+        System.out.print("전화번호 입력> ");
+        String phone = scanner.nextLine();
+        System.out.print("이메일 입력> ");
+        String email = scanner.nextLine();
+        
+        // 입력받은 정보들로 Contact 타입의 객체를 생성.
+        Contact c = new Contact(0, name, phone, email);
+        
+        // 생성된 Contact 타입의 객체를 배열에 저장.
+        contacts[count] = c;
+        
+        // 배열에 저장된 원소(연락처) 개수를 1 증가.
+        count++;
+        
+        System.out.println("새 연락처 저장 성공");
     }
     
     public int showMainMenu() {
