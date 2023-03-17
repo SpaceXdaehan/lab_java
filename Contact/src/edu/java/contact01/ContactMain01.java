@@ -95,7 +95,13 @@ public class ContactMain01 {
         System.out.println("--- 인덱스 검색 ---");
         System.out.print("검색할 인덱스 입력> ");
         int index = Integer.parseInt(scanner.nextLine());
-        contacts[index].printInfo();
+        
+        if (index >= 0 && index < count) {
+            contacts[index].printInfo();
+        } else {
+            System.out.println("해당 인덱스에는 연락처 정보가 없음...");
+        }
+        
     }
     
     public void selectAllContacts() {
@@ -109,6 +115,12 @@ public class ContactMain01 {
     public void insertNewContact() {
         System.out.println();
         System.out.println("--- 새 연락처 저장 ---");
+        
+        if (count == MAX_LENGTH) { // 배열에 저장된 연락처 개수가 배열 길이와 같다면
+            System.out.println("연락처를 저장할 공간이 부족...");
+            return; // 메서드 종료
+        }
+        
         System.out.print("이름 입력> ");
         String name = scanner.nextLine(); // 공백을 포함해서 엔터가 입력될 때까지 모든 문자열을 읽음.
         System.out.print("전화번호 입력> ");
@@ -126,6 +138,7 @@ public class ContactMain01 {
         count++;
         
         System.out.println("새 연락처 저장 성공");
+        
     }
     
     public int showMainMenu() {
