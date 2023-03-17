@@ -53,6 +53,11 @@ public class ContactMain01 {
         System.out.print("삭제할 연락처 인덱스 입력> ");
         int index = Integer.parseInt(scanner.nextLine());
         
+        if (index < 0 || index >= count) {
+            System.out.println("해당 인덱스에는 연락처 정보 없음...");
+            return; // 메서드 종료
+        }
+        
         for (int i = index; i < count - 1; i++) {
             contacts[i] = contacts[i + 1]; // 뒷쪽 연락처 정보를 한칸 앞으로...
         }
@@ -68,6 +73,11 @@ public class ContactMain01 {
         System.out.println("--- 연락처 수정 ---");
         System.out.print("수정할 연락처 인덱스 입력> ");
         int index = Integer.parseInt(scanner.nextLine());
+        
+        if (index < 0 || index >= count) {
+            System.out.println("해당 인덱스에는 연락처 정보 없음...");
+            return; // 메서드 종료
+        }
         
         System.out.print("수정 전: ");
         contacts[index].printInfo(); // 수정 전의 연락처 정보를 출력
