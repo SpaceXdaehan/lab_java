@@ -28,8 +28,10 @@ public class ContactMain01 {
                 app.insertNewContact();
                 break;
             case 2: // 연락처 전체 목록 보여주기
+                app.selectAllContacts();
                 break;
             case 3: // 배열의 인덱스로 연락처 검색하기
+                app.selectContactByIndex();
                 break;
             case 4: // 연락처 이름/전화번호/이메일 정보 수정하기
                 break;
@@ -41,6 +43,22 @@ public class ContactMain01 {
         }
 
         System.out.println("***** 프로그램 종료 *****");
+    }
+    
+    public void selectContactByIndex() {
+        System.out.println();
+        System.out.println("--- 인덱스 검색 ---");
+        System.out.print("검색할 인덱스 입력> ");
+        int index = Integer.parseInt(scanner.nextLine());
+        contacts[index].printInfo();
+    }
+    
+    public void selectAllContacts() {
+        System.out.println();
+        System.out.println("--- 연락처 목록 ---");
+        for (int i = 0; i < count; i++) {
+            contacts[i].printInfo();
+        }
     }
     
     public void insertNewContact() {
