@@ -34,8 +34,10 @@ public class ContactMain01 {
                 app.selectContactByIndex();
                 break;
             case 4: // 연락처 이름/전화번호/이메일 정보 수정하기
+                app.updateContactByIndex();
                 break;
             case 5: // 배열의 인덱스로 연락처 삭제하기.
+                app.deleteContactByIndex();
                 break;
             default:
                 System.out.println("메인 메뉴 번호를 확인하세요...");
@@ -45,6 +47,49 @@ public class ContactMain01 {
         System.out.println("***** 프로그램 종료 *****");
     }
     
+    public void deleteContactByIndex() {
+        System.out.println();
+        System.out.println("--- 연락처 삭제 ---");
+        System.out.print("삭제할 연락처 인덱스 입력> ");
+        int index = Integer.parseInt(scanner.nextLine());
+        
+        for (int i = index; i < count - 1; i++) {
+            contacts[i] = contacts[i + 1]; // 뒷쪽 연락처 정보를 한칸 앞으로...
+        }
+        
+        contacts[count - 1] = null; // 삭제 전 배열의 마지막 원소를 null
+        count--; // 배열 원소 개수를 1 줄임.
+        
+        System.out.println("삭제 성공");
+    }
+    
+    public void updateContactByIndex() {
+        System.out.println();
+        System.out.println("--- 연락처 수정 ---");
+        System.out.print("수정할 연락처 인덱스 입력> ");
+        int index = Integer.parseInt(scanner.nextLine());
+        
+        System.out.print("수정 전: ");
+        contacts[index].printInfo(); // 수정 전의 연락처 정보를 출력
+        
+        System.out.print("수정할 이름 입력> ");
+        String name = scanner.nextLine();
+        System.out.print("수정할 전화번호 입력> ");
+        String phone = scanner.nextLine();
+        System.out.print("수정할 이메일 입력> ");
+        String email = scanner.nextLine();
+        
+        // 수정할 인덱스의 정보를 업데이트
+        contacts[index].setName(name);
+        contacts[index].setPhone(phone);
+        contacts[index].setEmail(email);
+        
+//        contacts[index] = new Contact(0, name, phone, email);
+        
+        System.out.print("수정 후: ");
+        contacts[index].printInfo();
+    }
+
     public void selectContactByIndex() {
         System.out.println();
         System.out.println("--- 인덱스 검색 ---");
