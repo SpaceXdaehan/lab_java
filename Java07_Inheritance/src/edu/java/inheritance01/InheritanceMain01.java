@@ -18,6 +18,8 @@ public class InheritanceMain01 {
         SmartTv tv2 = new SmartTv();
         tv2.powerOnOff(); // 상위 클래스의 메서드를 상속받아서 사용 가능.
         tv2.printInfo();
+        tv2.setIp("192.168.31.1");
+        System.out.println("IP: " + tv2.getIp());
 
     }
 

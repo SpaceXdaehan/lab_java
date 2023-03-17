@@ -13,10 +13,10 @@ public class BasicTv {
     public void powerOnOff() {
         if (powerOn) {
             powerOn = false;
-            System.out.println("TV OFF");
+            System.out.println("TV 끔...");
         } else {
             powerOn = true;
-            System.out.println("TV ON");
+            System.out.println("TV 켬...");
         }
     }
     
