@@ -9,6 +9,28 @@ package edu.java.inheritance05;
 // final 클래스: 확장할 수 없는 클래스. 상속할 수 없는 클래스.
 //   (예) java.lang.System, java.lang.String, ...
 
+class A {
+    public void test1() {
+        System.out.println("test1");
+    }
+    
+    public final void test2() {
+        System.out.println("test2");
+    }
+}
+
+class B extends A {
+    @Override
+    public void test1() {
+        System.out.println("B::test1()");
+    }
+    
+//    public void test2() {} //-> final 메서드: override할 수 없는 메서드.
+}
+
+//class MyString extends String {}
+//-> final 클래스는 상속할 수 없는 클래스.
+
 public class InheritanceMain05 {
     private final int x = 1; // final 필드를 선언하면서 초기화.
     private final int y; // 생성자에서 명시적으로 초기화하는 코드가 있어야 함.
@@ -18,7 +40,9 @@ public class InheritanceMain05 {
     }
 
     public static void main(String[] args) {
-       
+       A a1 = new A();
+       a1.test1();
+       a1.test2();
 
     }
 
