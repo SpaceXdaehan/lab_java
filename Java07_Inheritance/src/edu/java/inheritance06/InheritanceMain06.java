@@ -22,6 +22,19 @@ public class InheritanceMain06 {
         T t = new T();
         System.out.println(t);
         
+        Point pt1 = new Point();
+        System.out.println("pt1: " + pt1);
+        //-> Point 클래스에서 toString() 메서드를 override하지 않으면,
+        // Object 클래스에서 상속받은 toString() 메서드가 리턴하는 문자열을 콘솔창에 출력.
+        //-> Point 클래스에서 toString() 메서드를 override(재정의)하면,
+        // println은 Point 클래스에서 재정의된 toString 메서드가 리턴하는 문자열을 콘솔창에 출력.
+        
+        Point pt2 = new Point(0, 0);
+        System.out.println("pt2: " + pt2);
+        
+        System.out.println("== 연산자: " + (pt1 == pt2));
+        System.out.println("equals 메서드: " + pt1.equals(pt2));
+        
     }
 
 }
