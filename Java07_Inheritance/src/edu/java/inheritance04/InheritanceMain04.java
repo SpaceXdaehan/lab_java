@@ -12,6 +12,21 @@ public class InheritanceMain04 {
         ((Child) ch1).testChild();
         //-> Parent 타입으로 선언된 변수를 Child 타입으로 강제 타입 변환(casting)을 하면
         // Child 타입에서 정의된 메서드들도 보이고 사용할 수 있음.
+        
+        Parent ch2 = new AnotherChild();
+        // ((Child) ch2).testChild();
+        //-> 문법 오류는 발생하지 않지만, 
+        // Child와 AnotherChild는 서로 casting할 수 없는 타입이기 때문에 실행 중에 에러가 발생.
+        // indatanceof 연산자: 변수 instanceof 클래스이름.
+        //  변수 클래스 타입의 인스턴스이면 true, 그렇지 않으면 false.
+        if (ch2 instanceof Child) {
+            ((Child) ch2).testChild();
+        } else if (ch2 instanceof AnotherChild) {
+            ((AnotherChild) ch2).testAnotherChild();
+        } else {
+            ch2.testParent();
+        }
+        
     }
 
 }
