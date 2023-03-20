@@ -41,21 +41,23 @@ public class Point {
     }
 
     @Override
+    // hashCode() 메서드는 반드시 int 타입을 리턴.
+    // equals()가 true를 리턴하는 두 객체는 hashCode()의 리턴값이 같아야 함.
     public int hashCode() {
-        return Objects.hash(x, y);
+//        return Objects.hash(x, y);
+        return x * 100 + y * 10;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass()) // 클래스 이름이 다르면
-            return false;
-        // 클래스 이름이 같으면 -> casting 할 수 있음.
-        Point other = (Point) obj;
-        return x == other.x && y == other.y;
+        boolean result = false;
+        
+        if (obj instanceof Point) { // obj가 Point 타입의 인스턴스이면
+            Point other = (Point) obj; // 안전한 타입 변환(casting)
+            result = (this.x == other.x) && (this.y == other.y);
+        }
+        
+        return result;
     }
     
 }

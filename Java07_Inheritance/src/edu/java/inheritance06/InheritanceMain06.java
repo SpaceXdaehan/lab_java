@@ -33,7 +33,23 @@ public class InheritanceMain06 {
         System.out.println("pt2: " + pt2);
         
         System.out.println("== 연산자: " + (pt1 == pt2));
+        //-> == 연산자는 지역 변수 pt1의 값과 pt2의 값을 비교.
+        // 클래스 타입의 지역 변수가 저장하는 값은 객체가 생성된 힙(heap)의 주소.
         System.out.println("equals 메서드: " + pt1.equals(pt2));
+        //-> equals() 메서드를 override하면, 두 객체가 같은 지에 대한 정의를 새로 내릴 수 있음.
+        System.out.println(pt1.getClass());
+        
+        System.out.println("pt1 hashCode: " + pt1.hashCode());
+        System.out.println("pt2 hashCode: " + pt2.hashCode());
+        //-> equals가 true를 리턴하는 두 객체(pt1, pt2)는 hashCode() 리턴 값이 같다!
+        
+        String s1 = new String("안녕하세요.");
+        String s2 = new String("안녕하세요.");
+        System.out.println("== 연산자: " + (s1 == s2));
+        //-> 두 문자열이 생성된 주소값들을 비교
+        System.out.println("equals 메서드: " + s1.equals(s2));
+        //-> java.lang.String 클래스는 equals()를 override(재정의)하고 있음.
+        //-> 문자열의 내용이 같은 지를 비교하도록 재정의.
         
     }
 
