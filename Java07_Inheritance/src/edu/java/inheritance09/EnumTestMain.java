@@ -18,6 +18,7 @@ class Test {
 
 enum Time {
     AM("오전"), PM("오후");
+    //-> enum 타입의 열거형 상수들은 enum 타입으로 생성된 객체!
     
     // 필드
     private String meaning;
