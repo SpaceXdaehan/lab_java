@@ -2,7 +2,7 @@ package edu.java.inheritance08;
 
 public abstract class Shape {
     // field
-    protected String type;
+    protected String type; // 도형의 종류를 저장하는 문자열(예: 직사각형, 원, ...)
     
     // constructor - 추상 클래스의 생성자는 하위 클래스에서만 호출할 수 있음.
     protected Shape(String type) {
