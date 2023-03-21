@@ -17,10 +17,48 @@ abstract class Animal {
     public abstract void move();
 }
 
+class Dog extends Animal {
+    @Override // 구현(implementation): 추상 메서드를 override해서 메서드 바디를 작성.
+    public void move() {
+        System.out.println("강아지 총총총...");
+    }
+}
+
+class Fish extends Animal {
+    @Override
+    public void move() {
+        System.out.println("물고기 스윔스윔...");
+    }
+}
+
+class Bird extends Animal {
+    @Override
+    public void move() {
+        System.out.println("새는 훨훨~~");
+    }
+}
+
 public class InheritanceMain07 {
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+        // Animal animal = new Animal();
+        //-> 추상 클래스 타입의 객체는 생성할 수 없다(cannot instantiate).
+        
+        Dog dog = new Dog();
+        //-> 추상 클래스를 구현하는 하위 타입의 객체는 생성할 수 있음.
+        dog.move();
+        
+        Fish fish = new Fish();
+        fish.move();
+        
+        Bird bird = new Bird();
+        bird.move();
+        
+        // 다형성: SuperType var = new SubType();
+        Animal[] animals = {bird, fish, dog};
+        for (Animal a : animals) {
+            a.move();
+        }
 
     }
 
