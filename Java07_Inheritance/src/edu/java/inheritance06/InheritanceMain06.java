@@ -51,6 +51,18 @@ public class InheritanceMain06 {
         //-> java.lang.String 클래스는 equals()를 override(재정의)하고 있음.
         //-> 문자열의 내용이 같은 지를 비교하도록 재정의.
         
+        User user1 = new User("admin", "admin1234");
+        System.out.println("user1: " + user1);
+        
+        User user2 = new User("admin", "0000");
+        System.out.println("user2: " + user2);
+        
+        System.out.println("== 연산자: " + (user1 == user2)); //-> false
+        System.out.println("equals 메서드: " + user1.equals(user2)); //-> true
+        
+        System.out.println("user1 hash = " + user1.hashCode());
+        System.out.println("user2 hash = " + user2.hashCode());
+        
     }
 
 }

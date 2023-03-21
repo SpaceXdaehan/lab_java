@@ -1,5 +1,7 @@
 package edu.java.inheritance06;
 
+import java.util.Objects;
+
 public class User {
     // field
     private String userId;
@@ -48,10 +50,23 @@ public class User {
             User other = (User) obj;
             if (this.userId != null && this.userId.equals(other.userId)) {
                 result = true;
+            } else if (this.userId == null && other.userId == null) {
+                result = true;
             }
         }
         
         return result;
+    }
+    
+    @Override
+    // equals()의 리턴 값이 true이면 hashCode()의 리턴 값이 같아야 함.
+    public int hashCode() {
+//        return Objects.hash(this.userId);
+        if (this.userId == null) {
+            return 0;
+        } else {
+            return this.userId.hashCode();
+        }
     }
 
 }
