@@ -1,5 +1,7 @@
 package edu.java.interface01;
 
+// import static 문장: static으로 선언된 필드(변수), 메서드, 클래스 이름을 가져올 때 사용.
+import static edu.java.interface01.DatabaseModule.DB_VERSION;
 
 // 인터페이스(interface):
 // 사용 목적: 팀/회사 간의 분업/협업을 하기 위해서 메서드(기능)들의 프로토타입(prototype, signature)을 약속(정의)하는 것.
@@ -13,8 +15,21 @@ package edu.java.interface01;
 public class InterfaceMain01 {
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+        System.out.println(DB_VERSION);
+        //-> import static 문장을 사용하면 DatabaseModule.DB_VERSION를 간단히 DB_VERSION으로 사용할 수 있음.
+        
+        //DatabaseModule.DB_VERSION = 2; //-> final이기 때문에 변경 불가.
 
+        //new DatabaseModule(); //-> 인터페이스는 객체를 생성할 수 없음.
+
+        // 인터페이스를 구현하고 있는 클래스의 객체는 생성할 수 있음.
+        //OracleDatabaseModule db = new OracleDatabaseModule();
+        
+        MariaDBModule db = new MariaDBModule();
+        
+        db.insert("abcd", 100);
+        db.select();
+        
     }
 
 }
