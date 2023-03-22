@@ -27,18 +27,34 @@ public class StringMain {
         
         // Ex 3. 아래의 문자열 배열에서 5글자 이상인 문자열들을 찾아서 출력.
         String[] languages = {"Java", "SQL", "HTML", "CSS", "JavaScript", "Python"};
-        // TODO
+        for (String s : languages) {
+            if (s.length() >= 5) {
+                System.out.print(s + " ");
+            }
+        }
+        System.out.println();
         
         // Ex 4. 아래의 문자열 배열에서 대소문자 구별 없이 "est"가 포함된 문자열들을 찾아서 출력.
         String[] tests = {"TEST", "test", "TeSt", "tEST", "테스트"};
-        // TODO
+        System.out.println("TeSt".toLowerCase());
+        System.out.println("TeSt".toUpperCase());
+        System.out.println("test".contains("est"));
+        for (String s : tests) {
+            if (s.toLowerCase().contains("est")) {
+                System.out.print(s + " ");
+            }
+        }
+        System.out.println();
         
         // Ex 5. 아래의 "YYYY-MM-DD" 형식의 날짜 문자열에서 연/월/일 정보를 int 타입 변수에 저장하고 출력.
         String date = "2023-03-22";
-        // TODO
-        int year;
-        int month;
-        int day;
+        String[] dateStrings = date.split("-");
+        int year = Integer.parseInt(dateStrings[0]);
+        int month = Integer.parseInt(dateStrings[1]);
+        int day = Integer.parseInt(dateStrings[2]);
+        System.out.println("year: " + year);
+        System.out.println("month: " + month);
+        System.out.println("day: " + day);
         
     }
 
