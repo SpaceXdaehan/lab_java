@@ -25,7 +25,12 @@ public class InterfaceMain01 {
         // 인터페이스를 구현하고 있는 클래스의 객체는 생성할 수 있음.
         //OracleDatabaseModule db = new OracleDatabaseModule();
         
-        MariaDBModule db = new MariaDBModule();
+        //MariaDBModule db = new MariaDBModule();
+        
+        // 다형성: SuperType var = new SubType();
+        // 인터페이스 이름도 구현 클래스들의 상위 타입으로 사용할 수 있음.
+//        DatabaseModule db = new MariaDBModule();
+        DatabaseModule db = new OracleDatabaseModule();
         
         db.insert("abcd", 100);
         db.select();
