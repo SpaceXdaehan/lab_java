@@ -30,6 +30,7 @@ public class ExceptionMain01 {
         }
 
         ExceptionMain01 app = new ExceptionMain01();
+        app.printLength("안녕하세요");
         app.printLength(null);
         
     }
