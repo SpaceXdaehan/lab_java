@@ -27,6 +27,8 @@ import java.util.Scanner;
  *         |__ RuntimeExeption, ...
  *             |__ ArithmeticException, NullPointerException, ArrayIndexOutOfBoundsException, ...
  *
+ * - catch 블록이 여러개일 때는 하위 타입의 예외들을 먼저 catch하고, 상위 타입의 예외들은 나중에 catch해야 함.
+ * 
  */
 
 public class ExceptionMain02 {
@@ -48,6 +50,8 @@ public class ExceptionMain02 {
             System.out.println("y는 0이 될 수 없음.");
             System.out.println(e.getMessage());
         } catch (NumberFormatException e) {
+            e.printStackTrace();
+        } catch (Exception e) { // Exception 클래스의 모든 하위 타입 예외들을 처리할 수 있음.
             e.printStackTrace();
         }
         
