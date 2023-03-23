@@ -48,7 +48,7 @@ class User implements Buyer, Seller {
         System.out.println("판매...");
     }
     
-    // 중복되는 default, static 메서드가 2개의 인터페이스에 있는 경우에는 반드시 override!
+    // 중복되는 default 메서드가 2개의 인터페이스에 있는 경우에는 반드시 override!
     @Override
     public void register() {
         // 상위인터페이스.super.메서드() 호출
