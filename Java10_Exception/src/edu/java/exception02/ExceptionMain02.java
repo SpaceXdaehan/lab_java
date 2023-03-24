@@ -7,7 +7,7 @@ import java.util.Scanner;
  * 
  * try {
  *     (1) 실행할 코드들.
- * } catch (f 타입 변수 선언) {
+ * } catch (Exception 타입 변수 선언) {
  *     (2) 예외가 발생했을 때 실행할 코드들.
  * } finally {
  *     (3) 예외 발생 여부와 상관없이 항상 실행할 코드들.
