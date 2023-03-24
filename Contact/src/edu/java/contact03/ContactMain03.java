@@ -9,7 +9,8 @@ import edu.java.contact.menu.Menu;
 
 public class ContactMain03 {
     
-    private Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
+    private final ContactDaoImpl dao = ContactDaoImpl.getInstance();
 
     public static void main(String[] args) {
         System.out.println("*** 연락처 프로그램 v0.3 ***");
@@ -26,6 +27,7 @@ public class ContactMain03 {
                 run = false;
                 break;
             case CREATE:
+                app.insertNewContact();
                 break;
             case READ_ALL:
                 break;
@@ -41,6 +43,14 @@ public class ContactMain03 {
         }
         
         System.out.println("*** 프로그램 종료 ***");
+    }
+    
+    private void insertNewContact() {
+        if (!dao.isMemoryAvailable()) { // 배열에 빈 공간이 없으면
+            System.out.println("연락처를 저장할 공간이 부족합니다...");
+            return;
+        }
+        // TODO
     }
 
     private int showMainMenu() {
