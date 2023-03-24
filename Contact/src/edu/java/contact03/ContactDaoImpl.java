@@ -22,7 +22,7 @@ public class ContactDaoImpl implements ContactDao {
     }
 
     // fields
-    private static final int MAX_LENGTH = 5; // 배열의 길이(크기)
+    private static final int MAX_LENGTH = 2; // 배열의 길이(크기)
     private Contact[] contacts = new Contact[MAX_LENGTH]; // 연락처 객체들을 저장할 배열
     private int count = 0; // 배열에 현재까지 저장된 연락처 객체의 개수.
     //-> 배열에 연락처 객체를 저장할 때 +1, 배열에서 연락처 객체를 삭제할 때 -1.
@@ -48,26 +48,49 @@ public class ContactDaoImpl implements ContactDao {
     // CRUD(Create, Read, Update, Delete) 기능 메서드들:
     @Override
     public int create(Contact c) {
-        // TODO Auto-generated method stub
-        return 0;
+        if (isMemoryAvailable()) { // 배열에 빈 공간이 있으면
+            contacts[count] = c;
+            count++;
+            
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     @Override
     public Contact[] read() {
-        // TODO Auto-generated method stub
-        return null;
+        Contact[] array = new Contact[count];
+        //-> contacts 배열에 저장된 원소 개수의 크기를 갖는 새로운 배열을 생성.
+        
+        for (int i = 0; i < count; i++) {
+            array[i] = contacts[i];
+        }
+        
+        return array;
     }
 
     @Override
     public Contact read(int index) {
-        // TODO Auto-generated method stub
-        return null;
+        if (isValidIndex(index)) {
+            return contacts[index];
+        } else {
+            return null;
+        }
     }
 
     @Override
     public int update(int index, Contact contact) {
-        // TODO Auto-generated method stub
-        return 0;
+        if (isValidIndex(index)) { // 유효한 인덱스이면
+            contacts[index].setName(contact.getName());
+            contacts[index].setPhone(contact.getPhone());
+            contacts[index].setEmail(contact.getEmail());
+            // contacts[index] = contact;
+            
+            return 1;
+        } else { // 유효하지 않은 인덱스이면
+            return 0;
+        }
     }
 
     @Override
