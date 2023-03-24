@@ -51,7 +51,21 @@ public class ContactMain03 {
     }
     
     private void deleteContact() {
-        // TODO 
+        System.out.println("\n----- 연락처 삭제 -----");
+        System.out.print("삭제할 연락처 인덱스 입력> ");
+        int index = inputNumber();
+        
+        if (!dao.isValidIndex(index)) {
+            System.out.println(">>> 해당 인덱스에는 연락처 정보가 없음.");
+            return;
+        }
+        
+        int result = dao.delete(index);
+        if (result == 1) {
+            System.out.println(">>> 연락처 삭제 성공");
+        } else {
+            System.out.println(">>> 연락처 삭제 실패");
+        }
     }
 
     private void updateContact() {
