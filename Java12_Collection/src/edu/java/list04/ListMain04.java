@@ -25,9 +25,16 @@ public class ListMain04 {
         System.out.println(users);
         
         // id가 "guest"인 첫번째 User 객체를 리스트에서 삭제
-        for (int i = 0; i < users.size(); i++) {
-            if (users.get(i).getId().equals("guest")) {
-                users.remove(i);
+//        for (int i = 0; i < users.size(); i++) {
+//            if (users.get(i).getId().equals("guest")) {
+//                users.remove(i);
+//                break;
+//            }
+//        }
+        
+        for (User u : users) {
+            if (u.getId().equals("guest")) {
+                users.remove(u);
                 break;
             }
         }
