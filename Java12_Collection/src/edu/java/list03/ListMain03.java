@@ -42,12 +42,27 @@ public class ListMain03 {
         System.out.println(longWords);
         
         // 리스트 subjects의 원소들의 글자수를 저장하는 리스트를 만들고 출력.
+        List<Integer> wordLengths = new ArrayList<>();
+        for (String s : subjects) {
+            wordLengths.add(s.length());
+        }
+        System.out.println(wordLengths);
         
         // 정수(0, 1)를 저장하는 리스트를 생성.
         List<Integer> codes = Arrays.asList(0, 1, 0, 0, 1, 1);
+        System.out.println(codes);
         
         // 리스트 codes의 원소가 0이면 "Male", 1이면 "Female"을 원소로 갖는 리스트를 만들고 출력.
-        
+        List<String> genders = new ArrayList<>();
+        for (Integer c : codes) {
+//            if (c == 0) {
+//                genders.add("Male");
+//            } else {
+//                genders.add("Female");
+//            }
+            genders.add((c == 0) ? "Male" : "Female");
+        }
+        System.out.println(genders);
         
     }
 
