@@ -1,6 +1,7 @@
 package edu.java.list01;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /*
  * 리스트(list)의 특징:
@@ -41,10 +42,40 @@ public class ListMain01 {
         languages.add("Java");
         languages.add("SQL");
         languages.add("HTML");
+        languages.add("Java");
         
         System.out.println("리스트 크기: " + languages.size());
         System.out.println(languages);
 
+        // 리스트에서 인덱스 위치의 원소를 리턴: get(int index)
+        System.out.println(languages.get(0)); // 인덱스는 0부터 시작.
+        System.out.println(languages.get(1));
+        
+        for (int i = 0; i < languages.size(); i++) {
+            System.out.print(languages.get(i) + " ");
+        }
+        System.out.println();
+        
+        // remove(Object o): 리스트에서 처음 등장하는 원소를 찾아서 삭제.
+        // remove(int index): 리스트에서 인덱스 위치에 있는 원소를 삭제.
+        languages.remove("Java");
+        System.out.println(languages);
+        
+        languages.remove(0);
+        System.out.println(languages);
+        
+        // 향상된 for 구문(for-each): for (변수 선언 : 리스트) { ... }
+        for (String s : languages) {
+            System.out.print(s + " ");
+        }
+        System.out.println();
+        
+        // Iterator<E> 객체를 사용한 리스트 원소들 반복.
+        Iterator<String> itr = languages.iterator(); // Iterator 객체 생성.
+        while (itr.hasNext()) {
+            System.out.println(itr.next());
+        }
+        
     }
 
 }
