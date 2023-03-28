@@ -36,6 +36,7 @@ public class Score {
     @Override
     public int hashCode() {
         return Objects.hash(this.java, this.sql, this.web);
+//        return java + sql + web;
     }
 
 }
