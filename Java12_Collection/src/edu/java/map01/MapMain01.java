@@ -1,6 +1,7 @@
 package edu.java.map01;
 
 import java.util.HashMap;
+import java.util.Set;
 
 /*
  * Collection<E>
@@ -26,9 +27,41 @@ public class MapMain01 {
         // 정수를 Key로 하고 문자열을 Value로 하는 HashMap 변수 선언, 초기화(객체 생성).
         HashMap<Integer, String> students = new HashMap<>();
         
+        // put(key, value): Map에 key-value 쌍의 데이터를 저장.
+        students.put(1, "강효남");
+        students.put(2, "김다훈");
+        students.put(3, "김도현");
+        students.put(20, "김다훈");
+        
         System.out.println("map size = " + students.size());
         System.out.println(students);
-
+        
+        // get(key): key에 매핑된 value를 리턴. key에 매핑된 value가 없으면 null을 리턴.
+        System.out.println(students.get(3));
+        System.out.println(students.get(10));
+        
+        // getOrDefault(key, defaultValue):
+        // key 매핑된 value를 리턴. key에 매핑된 value가 없으면 defaultValue를 리턴.
+        System.out.println(students.getOrDefault(3, "무명씨"));
+        System.out.println(students.getOrDefault(10, "무명씨"));
+        
+        // remove(key): key에 매핑된 key-value 원소를 삭제.
+        students.remove(20);
+        System.out.println("map size = " + students.size());
+        System.out.println(students);
+        
+        // put(key, value):
+        // (1) Map에 key가 존재하지 않으면 key-value 데이터를 저장.
+        // (2) Map에 key가 존재하면, key에 매핑된 value를 변경.
+        students.put(3, "KIM Dohyun");
+        System.out.println(students);
+        
+        // Map에서 향상된 for 문장을 사용하는 방법:
+        Set<Integer> keySet = students.keySet(); // (1) Map의 key들로만 이루어진 Set을 만듦.
+        for (Integer k : keySet) { // (2) key들을 처음부터 끝까지 순회하면서
+            System.out.println(k + " : "+ students.get(k)); // (3) key에 매핑된 value를 찾음.
+        }
+        
     }
 
 }
