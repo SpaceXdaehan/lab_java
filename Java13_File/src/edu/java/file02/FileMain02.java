@@ -20,6 +20,33 @@ public class FileMain02 {
             in = new FileInputStream(origin);
             out = new FileOutputStream(dest);
             
+            long start = System.currentTimeMillis(); // 파일 복사 시작 시간
+            
+            // 파일 복사
+            while (true) {
+                //int read = in.read(); // (1) 파일에서 1바이트 읽기.
+                
+                byte[] buffer = new byte[4 * 1024]; // 4,096 Byte = 4KB
+                int read = in.read(buffer); // (2) 파일에서 4KB씩 읽기.
+                // buffer: 파일에서 읽은 내용(데이터)를 저장하기 위한 배열.
+                // 리턴 값 read: 파일에서 실제로 읽은 바이트 수.
+                
+                if (read == -1) { // 파일 끝(EOF)에 도달하면
+                    break; // 반복문 종료.
+                }
+                
+                //out.write(read); // (1) 파일에 1바이트 쓰기.
+                
+                out.write(buffer, 0, read); // (2) 파일에 4KB씩 쓰기.
+                // buffer: 파일에 쓸 데이터를 가지고 있는 배열(byte[])
+                // 0: 배열 buffer에서 읽기 시작할 인덱스.
+                // read: 파일에 쓸 바이트 수.
+            }
+            
+            long end = System.currentTimeMillis(); // 파일 복사 종료 시간
+            long elapsedTime = end - start; // 복사 경과 시간
+            System.out.println("복사 경과 시간: " + elapsedTime + "ms");
+            
         } catch (Exception e) {
             e.printStackTrace(); // 예외 이름, 내용, 발생한 코드 위치를 콘솔창에 출력.
         } finally {
