@@ -1,6 +1,9 @@
 package edu.java.file05;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 /*
@@ -29,13 +32,34 @@ public class FileMain05 {
                 FileOutputStream out = new FileOutputStream(file);
                 ObjectOutputStream oout = new ObjectOutputStream(out);
         ) {
-            oout.writeObject(p);
+            oout.writeObject(p); // 직렬화(serialize)
             System.out.println("파일 작성 완료");
             
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        // 파일에 직렬화된 형태로 쓰여진 데이터를 읽어서 자바 객체로 변환.
+        FileInputStream in = null;
+        ObjectInputStream oin = null;
+        try {
+            in = new FileInputStream(file);
+            oin = new ObjectInputStream(in);
+            
+            Product result = (Product) oin.readObject();
+            //-> 파일에 직렬화된 내용을 자바 객체 타입으로 변환 - 역직렬화(de-serialize)
+            System.out.println(result);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                oin.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        
     }
 
 }
