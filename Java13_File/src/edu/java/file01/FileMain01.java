@@ -31,7 +31,7 @@ public class FileMain01 {
 
     public static void main(String[] args) {
         String fileName = "data/hello.txt"; // 읽을 파일 이름(경로)
-        String copyFile = "data/hello-copy.txt"; // 복살 파일 이름(경로)
+        String copyFile = "data/hello-copy.txt"; // 복사할 파일 이름(경로)
         
         FileInputStream in = null;
         FileOutputStream out = null;
