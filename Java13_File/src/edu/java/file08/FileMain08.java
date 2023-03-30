@@ -1,5 +1,11 @@
 package edu.java.file08;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
+
 /*
  * IO Stream: 바이트 스트림(byte stream). 읽기/쓰기의 기본 단위는 byte 단위.
  *   모든 파일 형식(txt, jpg, mp4, docx, pptx, ...)에서 사용 가능.
@@ -32,6 +38,58 @@ package edu.java.file08;
 public class FileMain08 {
 
     public static void main(String[] args) {
+        String ansiFile = "data/encoding-ansi.txt";
+        String utf8File = "data/encoding-utf8.txt";
+        
+        // 1. Java 11 이전 버전에서 문자 스트림을 사용하는 방법:
+        // FileReader, FileWriter는 권장하지 않음.
+        try (
+                // 1. byte stream 생성
+                FileInputStream in = new FileInputStream(ansiFile);
+                // 2. 인코딩을 설정한 문자 스트림을 생성
+                InputStreamReader reader = new InputStreamReader(in, "EUC-KR");
+                // 3. 메모리 버퍼를 사용해서 읽기 속도를 빠르게 하기 위해서
+                BufferedReader br = new BufferedReader(reader);
+        ) {
+            while (true) {
+                int read = br.read(); // 1글자를 읽음.
+                if (read == -1) { // EOF
+                    break;
+                }
+                System.out.print((char) read);
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        System.out.println();
+        
+        // Java 11 버전부터 문자 스트림을 사용하는 방법:
+        // FileReader, FileWriter에서 인코딩 방식을 설정할 수 있게됨.
+        try (
+                // 1. FileReader를 생성할 때 인코딩 방식을 설정.
+                FileReader reader = new FileReader(utf8File, Charset.forName("UTF-8"));
+                // 2. 메모리 버퍼를 사용해서 읽기 속도를 빠르게.
+                BufferedReader br = new BufferedReader(reader);
+        ) {
+            while (true) {
+//                int read = br.read(); // 1글자씩 읽음.
+//                if (read == -1) { // EOF
+//                    break;
+//                }
+//                System.out.print((char) read); // 읽은 1글자를 콘솔에 출력.
+                
+                String line = br.readLine(); // 1줄씩 읽음.
+                if (line == null) { // EOF
+                    break;
+                }
+                System.out.println(line);
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         
     }
 
