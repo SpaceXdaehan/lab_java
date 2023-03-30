@@ -44,6 +44,54 @@ public class FileMain09 {
         String path = "data" + File.separator + "encoding-ansi.txt";
         System.out.println(path);
         
+        // File 클래스: 
+        // 파일(txt, jpg, mp4, ...)과 폴더(디렉토리)에 관련된 기능(메서드)들을 가지고 있는 클래스.
+        
+        // File 타입 객체 생성
+        File f = new File(path);
+        System.out.println("경로: " + f.getPath());
+        //-> 파일 객체가 생성될 때 상대 경로로 생성된 경우, getPath() 메서드는 상대 경로를 리턴.
+        //-> 파일 객체를 생성할 때 절대 경로로 생성하면, getPath() 메서드는 절대 경로를 리턴.
+        
+        System.out.println("절대 경로: " + f.getAbsolutePath());
+        System.out.println("이름: " + f.getName()); // 파일 또는 폴더 이름.
+        System.out.println("존재? " + f.exists());
+        System.out.println("파일? " + f.isFile());
+        System.out.println("폴더? " + f.isDirectory());
+        System.out.println("크기: " + f.length()); //-> 바이트(byte) 단위
+        
+        // data 폴더의 내용(하위 폴더, 파일들)을 출력
+        File dataDir = new File("data");
+        System.out.println(dataDir.getAbsolutePath());
+        File[] files = dataDir.listFiles(); // 폴더의 하위 폴더와 파일들의 배열을 리턴.
+        for (File file : files) {
+            String fileName = file.getName(); // 파일 또는 폴더 이름.
+            String info = null; // 화면에 출력할 정보
+            if (file.isFile()) { // 파일인 경우
+                info = fileName + "\t" + file.length() + "Bytes";
+            } else { // 파일이 아닌 경우(폴더인 경우)
+                info = fileName + "\t<DIR>";
+            }
+            System.out.println(info);
+        }
+        
+        // 새 폴더 생성: (1) File 객체 생성. (2) 폴더가 없으면, mkdir() 메서드를 호출.
+        File newFolder = new File("data", "temp"); // .\data\temp
+        if (newFolder.exists()) { // 폴더가 이미 존재하면
+            System.out.println("폴더가 이미 있습니다...");
+        } else { // 폴더가 존재하지 않으면
+            newFolder.mkdir(); // make directory
+            System.out.println("새 폴더 생성 성공");
+        }
+        
+        // 기존 폴더 삭제: (1) File 객체 생성. (2) 폴더가 있으면, delete() 메서드를 호출.
+        if (newFolder.exists()) {
+            newFolder.delete();
+            System.out.println("폴더 삭제 성공");
+        } else {
+            System.out.println("삭제할 폴더가 없습니다...");
+        }
+        
     }
 
 }
