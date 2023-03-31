@@ -1,5 +1,8 @@
 package edu.java.inner01;
 
+import edu.java.inner01.Outer.Inner;
+import edu.java.inner01.Enclosing.Nested;
+
 /*
  * 변수 선언 위치:
  * 1. 필드: 클래스의 멤버로 선언하는 변수. 접근 수식어를 사용할 수 있음.
@@ -48,11 +51,20 @@ public class InnerMain01 {
         
         // 내부 클래스 Inner 타입의 객체를 생성.
         // 인스턴스는 내부 클래스는 참조 변수를 사용해야 생성자를 호출할 수 있음.
-        Outer.Inner inner1 = outer1.new Inner(200);
+//        Outer.Inner inner1 = outer1.new Inner(200); //-> import 문 없는 경우
+        Inner inner1 = outer1.new Inner(200); //-> import 문 있는 경우
         inner1.printInfo();
         
         Outer.Inner inner2 = outer1.new Inner(300);
         inner2.printInfo();
+        
+        System.out.println(Enclosing.var); // static 멤버 변수
+        Enclosing outer2 = new Enclosing(1);
+        System.out.println(outer2);
+        
+//        Enclosing.Nested nested = new Enclosing.Nested(2); //-> import 문 없을 때
+        Nested nested = new Nested(2); //-> import 문 있을 때
+        nested.printInfo();
         
     }
 
