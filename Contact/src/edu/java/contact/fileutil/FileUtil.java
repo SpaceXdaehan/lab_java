@@ -1,6 +1,12 @@
 package edu.java.contact.fileutil;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,19 +50,41 @@ public class FileUtil {
      * @return Contact 타입을 원소로 갖는 리스트(List).
      */
     public static List<Contact> readDataFromFile(File file) {
-        // TODO
-        return null;
+        List<Contact> list = new ArrayList<>(); // 리턴할 변수 선언
+        
+        try (
+                FileInputStream in = new FileInputStream(file);
+                BufferedInputStream bin = new BufferedInputStream(in);
+                ObjectInputStream oin = new ObjectInputStream(bin);
+        ) {
+            list = (List<Contact>) oin.readObject();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return list;
     }
     
     /**
      * writeDataToFile.
-     * argumet로 전달된 data를 (직렬화해서) file에 씀.
+     * argument로 전달된 data를 (직렬화해서) file에 씀.
      * 
      * @param data 파일에 쓸 데이터.Contact 타입을 저장하는 리스트(List<Contact>).
      * @param file 데이터 파일(File) 객체
      */
     public static void writeDataToFile(List<Contact> data, File file) {
-        // TODO
+        try (
+                FileOutputStream out = new FileOutputStream(file);
+                BufferedOutputStream bout = new BufferedOutputStream(out);
+                ObjectOutputStream oout = new ObjectOutputStream(bout);
+        ) {
+            oout.writeObject(data);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
     }
     
     /**

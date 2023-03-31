@@ -20,7 +20,7 @@ public class ContactDaoImpl implements ContactDao {
         dataFile = new File(FileUtil.DATA_DIR, FileUtil.DATA_FILE);
         contacts = FileUtil.initData(); // 데이터 초기화 - 파일의 내용을 메모리에 로딩.
     }
-    // TODO: ContactDaoImpl에는 연락처 데이터를 변경하는 메서드들이 있음.
+    // ContactDaoImpl에는 연락처 데이터를 변경하는 메서드들이 있음.
     //-> 연락처 데이터가 변경되는 메서드에서 FileUtil.writeDataToFile() 메서드 호출.
     
     // singleton step 3
@@ -50,7 +50,8 @@ public class ContactDaoImpl implements ContactDao {
     // CRUD(Create, Read, Update, Delete) 기능 메서드들:
     @Override
     public int create(Contact c) {
-        contacts.add(c);
+        contacts.add(c); // (heap) 메모리에 있는 List에 연락처를 추가.
+        FileUtil.writeDataToFile(contacts, dataFile);
         
         return 1;
     }
