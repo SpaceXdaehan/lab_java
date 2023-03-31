@@ -1,6 +1,7 @@
 package edu.java.contact.fileutil;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.java.contact.model.Contact;
@@ -23,8 +24,15 @@ public class FileUtil {
      * @return 데이터 파일을 저장할 폴더의 File 객체.
      */
     public static File initDataDir() {
-        // TODO
-        return null;
+        File dir = new File(DATA_DIR);
+        if (dir.exists()) { // 폴더가 존재하면
+            System.out.println("데이터 폴더 이미 존재...");
+        } else { // 폴더가 존재하지 않으면
+            dir.mkdir();
+            System.out.println("데이터 폴더 생성...");
+        }
+        
+        return dir;
     }
     
     /**
@@ -35,7 +43,10 @@ public class FileUtil {
      * @param file 연락처 정보가 저장된 파일 경로를 가지고 있는 File 타입 객체.
      * @return Contact 타입을 원소로 갖는 리스트(List).
      */
-    // TODO
+    public static List<Contact> readDataFromFile(File file) {
+        // TODO
+        return null;
+    }
     
     /**
      * writeDataToFile.
@@ -44,7 +55,9 @@ public class FileUtil {
      * @param data 파일에 쓸 데이터.Contact 타입을 저장하는 리스트(List<Contact>).
      * @param file 데이터 파일(File) 객체
      */
-    // TODO
+    public static void writeDataToFile(List<Contact> data, File file) {
+        // TODO
+    }
     
     /**
      * initData.
@@ -54,8 +67,15 @@ public class FileUtil {
      * @return Contact 타입을 원소로 갖는 리스트(List<Contact>).
      */
     public static List<Contact> initData() {
-        // TODO
-        return null;
+        File file = new File(DATA_DIR, DATA_FILE); // .\data\contacts.dat 파일 객체
+        
+        List<Contact> list = new ArrayList<>();
+        if (file.exists()) { // 파일이 존재하면
+            list = readDataFromFile(file);
+            System.out.println("연락처 파일 로딩...");
+        }
+        
+        return list;
     }
     
 }
