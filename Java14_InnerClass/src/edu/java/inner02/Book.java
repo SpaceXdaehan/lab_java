@@ -20,4 +20,38 @@ public class Book {
                 title, author, publisher);
     }
 
+    //---------- Factory(Builder) 디자인 패턴 ----------
+    public static BookBuilder builder() {
+        return new BookBuilder();
+        //-> 외부 클래스는 static 내부 클래스의 private 생성자를 호출할 수 있다!
+    }
+    
+    public static class BookBuilder {
+        private String title;
+        private String author;
+        private String publisher;
+        
+        private BookBuilder() {}
+        
+        public BookBuilder title(String title) {
+            this.title = title;
+            return this; // this: BookBuilder 타입으로 생성된 객체(인스턴스)
+        }
+        
+        public BookBuilder author(String author) {
+            this.author = author;
+            return this;
+        }
+        
+        public BookBuilder publisher(String publisher) {
+            this.publisher = publisher;
+            return this;
+        }
+        
+        public Book build() {
+            return new Book(title, author, publisher);
+        }
+        
+    }
+    
 }
