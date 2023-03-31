@@ -42,6 +42,18 @@ public class InnerMain01 {
 //        static int y;
         //-> 지역 변수는 final 수식어만 가능.
         
+        // 외부 클래스 Outer 타입의 객체를 생성
+        Outer outer1 = new Outer(100, 200, "abc");
+        System.out.println(outer1);
+        
+        // 내부 클래스 Inner 타입의 객체를 생성.
+        // 인스턴스는 내부 클래스는 참조 변수를 사용해야 생성자를 호출할 수 있음.
+        Outer.Inner inner1 = outer1.new Inner(200);
+        inner1.printInfo();
+        
+        Outer.Inner inner2 = outer1.new Inner(300);
+        inner2.printInfo();
+        
     }
 
 }
