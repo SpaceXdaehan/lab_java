@@ -99,8 +99,8 @@ public class FileUtil {
         
         List<Contact> list = new ArrayList<>();
         if (file.exists()) { // 파일이 존재하면
-            list = readDataFromFile(file);
             System.out.println("연락처 파일 로딩...");
+            list = readDataFromFile(file);
         }
         
         return list;

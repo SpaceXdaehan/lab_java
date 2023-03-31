@@ -76,7 +76,8 @@ public class ContactDaoImpl implements ContactDao {
 //            contacts.get(index).setName(contact.getName());
 //            contacts.get(index).setPhone(contact.getPhone());
 //            contacts.get(index).setEmail(contact.getEmail());
-             contacts.set(index, contact);
+             contacts.set(index, contact); // heap 메모리의 List 객체가 변경
+             FileUtil.writeDataToFile(contacts, dataFile); // 변경된 리스트를 파일에 저장.
             
             return 1;
         } else { // 유효하지 않은 인덱스이면
@@ -90,7 +91,8 @@ public class ContactDaoImpl implements ContactDao {
             return 0;
         }
         
-        contacts.remove(index);
+        contacts.remove(index); // heap 메모리의 리스트가 변경.
+        FileUtil.writeDataToFile(contacts, dataFile); // 변경된 내용을 파일에 저장. 
         
         return 1;
     }
