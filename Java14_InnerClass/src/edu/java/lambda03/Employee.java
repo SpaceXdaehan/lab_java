@@ -57,7 +57,7 @@ public class Employee {
     
     @Override
     public String toString() {
-        return String.format("Employee(id=%d, name=%s, dept=%s, title=%s, salary=%f", 
+        return String.format("Employee(id=%d, name=%s, dept=%s, title=%s, salary=%f)", 
                 this.empId, this.empName, this.dept, this.empTitle, this.salary);
     }
     
