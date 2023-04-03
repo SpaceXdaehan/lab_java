@@ -1,6 +1,7 @@
 package edu.java.lambda02;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -55,6 +56,23 @@ public class LambdaMain02 {
         System.out.println(oddSquares2);
         // map 메서드의 argument:
         //   파라미터가 1개이고, 리턴 값이 있는(void가 아닌) FunctionalInterface 객체.
+        
+        List<String> languages = Arrays.asList("Java", "SQL", "JavaScript", "Python");
+        // 리스트 languages에서 5글자 이상인 문자열을 소문자로 변환한 문자열을 원소로 갖는 리스트를 만들고 출력.
+        
+        List<String> result = new ArrayList<>();
+        for (String x : languages) {
+            if (x.length() >= 5) {
+                result.add(x.toLowerCase());
+            }
+        }
+        System.out.println(result);
+        
+        List<String> result2 = languages.stream()
+                .filter(x -> x.length() >= 5)
+                .map(x -> x.toLowerCase())
+                .toList();
+        System.out.println(result2);
         
     }
 
