@@ -3,7 +3,7 @@ package edu.java.inner03;
 import edu.java.inner03.Button.OnClickListener;
 
 public class InnerMain03 {
-
+    
     public static void main(String[] args) {
         // 1. 버튼 객체 생성
         Button btnOpen = new Button("파일 열기");
