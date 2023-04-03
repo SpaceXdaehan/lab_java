@@ -34,6 +34,33 @@ public class InnerMain03 {
         // 5. btnSave의 click 메서드 사용 -> btnSave가 가지고 있는 listener의 onClick() 호출.
         btnSave.click();
         
+        // 지역 클래스: 선언된 메서드 안에서만 사용 가능(객체 생성).
+        // -> 이름이 없는 클래스: 클래스를 정의하면서 동시에 객체 생성까지 하는 클래스.
+        Button btnExit = new Button("종료");
+        OnClickListener listener3 = new OnClickListener() {
+            @Override
+            public void onClick() {
+                System.out.println("프로그램 종료...");
+            }
+        };
+        btnExit.setOnClickListener(listener3);
+        btnExit.click();
+        
+        Button btnHelp = new Button("도움말");
+        btnHelp.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick() {
+                System.out.println("도움말 보기...");
+            }
+        });
+        btnHelp.click();
+        
+        Button btnEdit = new Button("편집");
+        // 람다 표현식: 추상 메서드가 오직 1개인 인터페이스 구현 클래스를 간단히 표현하는 방법.
+        btnEdit.setOnClickListener(() -> { System.out.println("파일 편집..."); });
+        btnEdit.click();
+        
     }
+
 
 }
