@@ -8,6 +8,8 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AppMain03 {
 
@@ -75,21 +77,45 @@ public class AppMain03 {
         frame.getContentPane().add(textNumber2);
         
         btnPlus = new JButton("+");
+        btnPlus.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                handleButtonClick(e);
+            }
+        });
         btnPlus.setFont(new Font("D2Coding", Font.PLAIN, 32));
         btnPlus.setBounds(12, 158, 64, 64);
         frame.getContentPane().add(btnPlus);
         
         btnMinus = new JButton("-");
+        btnMinus.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                handleButtonClick(e);
+            }
+        });
         btnMinus.setFont(new Font("D2Coding", Font.PLAIN, 32));
         btnMinus.setBounds(88, 158, 64, 64);
         frame.getContentPane().add(btnMinus);
         
         btnMultiply = new JButton("x");
+        btnMultiply.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                handleButtonClick(e);
+            }
+        });
         btnMultiply.setFont(new Font("D2Coding", Font.PLAIN, 32));
         btnMultiply.setBounds(164, 158, 64, 64);
         frame.getContentPane().add(btnMultiply);
         
         btnDivide = new JButton("/");
+        btnDivide.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                handleButtonClick(e);
+            }
+        });
         btnDivide.setFont(new Font("D2Coding", Font.PLAIN, 32));
         btnDivide.setBounds(240, 158, 64, 64);
         frame.getContentPane().add(btnDivide);
@@ -98,5 +124,43 @@ public class AppMain03 {
         textResult.setFont(new Font("D2Coding", Font.PLAIN, 32));
         textResult.setBounds(12, 236, 452, 195);
         frame.getContentPane().add(textResult);
+    }
+
+    private void handleButtonClick(ActionEvent event) {
+//        System.out.println(event.getSource());
+        //-> argument로 전달된 ActionEvent 객체에서 이벤트가 발생한 GUI 컴포넌트 정보를 알 수 있다.
+        
+        // JTextField에 입력된 문자열을 읽어서 double 타입으로 변환.
+        double number1 = 0;
+        double number2 = 0;
+        try {
+            number1 = Double.parseDouble(textNumber1.getText());
+            number2 = Double.parseDouble(textNumber2.getText());
+            
+        } catch (NumberFormatException e) {
+            textResult.setText("number1,2는 숫자로 입력하세요...");
+            return; // 메서드 종료
+        }
+        
+        double result = 0; // 사칙 연산 결과를 저장할 변수
+        String op = ""; // 사칙 연산 연산자 문자열을 저장할 변수(+, -, x, /)
+        
+        Object source = event.getSource(); // 이벤트가 발생한 컴포넌트
+        if (source == btnPlus) {
+            result = number1 + number2;
+            op = "+";
+        } else if (source == btnMinus) {
+            result = number1 - number2;
+            op = "-";
+        } else if (source == btnMultiply) {
+            result = number1 * number2;
+            op = "x";
+        } else if (source == btnDivide) {
+            result = number1 / number2;
+            op = "/";
+        }
+        
+        String msg = String.format("%f %s %f = %f", number1, op, number2, result);
+        textResult.setText(msg);
     }
 }
