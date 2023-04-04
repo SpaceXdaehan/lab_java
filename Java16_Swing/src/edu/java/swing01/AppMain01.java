@@ -46,10 +46,11 @@ public class AppMain01 {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //-> JFrame 우상단의 닫기(x) 버튼의 기능 정의 - 프로그램 종료.
         
-        JLabel lblText = new JLabel("안녕하세요, Swing!");
+        JLabel lblText = new JLabel("안녕하세요, Swing!"); // JLabel 객체 생성
         lblText.setHorizontalAlignment(SwingConstants.CENTER);
         lblText.setFont(new Font("D2Coding", Font.PLAIN, 32));
         frame.getContentPane().add(lblText, BorderLayout.CENTER);
+        //-> JLabel 객체를 ContentPane에 추가.
         
     }
 
