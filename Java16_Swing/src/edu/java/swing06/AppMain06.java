@@ -16,6 +16,8 @@ public class AppMain06 {
     private JButton btnConfirmDlg;
     private JButton btnOptionDlg;
     private JButton btnInputDlg;
+    private JButton btnCustomDlg;
+    private JButton btnCustomFrame;
 
     /**
      * Launch the application.
@@ -45,7 +47,7 @@ public class AppMain06 {
      */
     private void initialize() {
         frame = new JFrame();
-        frame.setBounds(100, 100, 450, 514);
+        frame.setBounds(100, 100, 450, 552);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
         
@@ -128,6 +130,28 @@ public class AppMain06 {
         btnInputDlg.setFont(new Font("D2Coding", Font.PLAIN, 28));
         btnInputDlg.setBounds(12, 256, 410, 72);
         frame.getContentPane().add(btnInputDlg);
+        
+        btnCustomDlg = new JButton("Custom Dialog");
+        btnCustomDlg.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MyDialog.showMyDialog(null);
+            }
+        });
+        btnCustomDlg.setFont(new Font("D2Coding", Font.PLAIN, 28));
+        btnCustomDlg.setBounds(12, 338, 410, 72);
+        frame.getContentPane().add(btnCustomDlg);
+        
+        btnCustomFrame = new JButton("Custom Frame");
+        btnCustomFrame.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MyFrame.showMyFrame();
+            }
+        });
+        btnCustomFrame.setFont(new Font("D2Coding", Font.PLAIN, 28));
+        btnCustomFrame.setBounds(12, 419, 410, 72);
+        frame.getContentPane().add(btnCustomFrame);
     }
 
 }
