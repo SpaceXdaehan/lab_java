@@ -14,6 +14,8 @@ public class AppMain06 {
     private JFrame frame;
     private JButton btnMsgDlg;
     private JButton btnConfirmDlg;
+    private JButton btnOptionDlg;
+    private JButton btnInputDlg;
 
     /**
      * Launch the application.
@@ -68,18 +70,64 @@ public class AppMain06 {
         btnConfirmDlg.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showConfirmDialog(
-                        frame, 
-                        "정말 삭제할까요?", 
-                        "삭제 확인", 
-                        JOptionPane.YES_NO_CANCEL_OPTION, 
-                        JOptionPane.QUESTION_MESSAGE
-                );
+                int result = JOptionPane.showConfirmDialog(
+                        frame, // 부모 컴포넌트
+                        "정말 삭제할까요?", // 메시지
+                        "삭제 확인", // 타이틀
+                        JOptionPane.YES_NO_CANCEL_OPTION, // 확인 옵션(yes-no, yes-no-cancel) 
+                        JOptionPane.QUESTION_MESSAGE // 메시지 타입
+                        );
+                btnConfirmDlg.setText("Confirm = " + result);
             }
         });
         btnConfirmDlg.setFont(new Font("D2Coding", Font.PLAIN, 28));
         btnConfirmDlg.setBounds(12, 92, 410, 72);
         frame.getContentPane().add(btnConfirmDlg);
+        
+        btnOptionDlg = new JButton("Option Dialog");
+        btnOptionDlg.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String[] options = {"아니요", "어려워요", "재밌어요", "쉬어요"};
+                int result = JOptionPane.showOptionDialog(
+                        frame, // 부모 컴포넌트
+                        "Java Swing 재미있나여?", // 메시지 
+                        "옵션 확인", // 타이틀
+                        JOptionPane.YES_NO_CANCEL_OPTION, // 옵션 타입
+                        JOptionPane.QUESTION_MESSAGE, // 메시지 타입 
+                        null, // 아이콘
+                        options, // 옵션들의 배열
+                        options[2] // 옵션 초깃값
+                        );
+                btnOptionDlg.setText("Option result = " + result);
+            }
+        });
+        btnOptionDlg.setFont(new Font("D2Coding", Font.PLAIN, 28));
+        btnOptionDlg.setBounds(12, 174, 410, 72);
+        frame.getContentPane().add(btnOptionDlg);
+        
+        btnInputDlg = new JButton("Input Dialog");
+        btnInputDlg.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+//                String input = JOptionPane.showInputDialog(frame, "이름?");
+                Object[] selectionValues = {"10대", "20대", "30대", "40대"};
+                Object input = JOptionPane.showInputDialog(
+                        frame, // 부모 컴포넌트
+                        "나이?", // 메시지 
+                        "나이 확인", // 타이틀 
+                        JOptionPane.QUESTION_MESSAGE, // 메시지 타입 
+                        null, // 아이콘
+                        selectionValues, // 입력으로 사용할 수 있는 선택지들의 배열
+                        selectionValues[1] // 선택 초깃값
+                        );
+                
+                btnInputDlg.setText("Input = " + input);
+            }
+        });
+        btnInputDlg.setFont(new Font("D2Coding", Font.PLAIN, 28));
+        btnInputDlg.setBounds(12, 256, 410, 72);
+        frame.getContentPane().add(btnInputDlg);
     }
 
 }
