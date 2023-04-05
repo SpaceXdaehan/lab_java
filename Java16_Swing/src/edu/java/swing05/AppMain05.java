@@ -65,6 +65,7 @@ public class AppMain05 {
         frame.getContentPane().setLayout(null);
         
         rbPrivate = new JRadioButton("private");
+        rbPrivate.setSelected(true);
         rbPrivate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
