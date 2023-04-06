@@ -15,6 +15,8 @@ import javax.swing.table.DefaultTableModel;
 
 import edu.java.contact.model.Contact;
 import edu.java.contact05.ContactDaoImpl;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ContactMain06 {
     // 테이블 컬럼 이름 (상수)
@@ -78,6 +80,12 @@ public class ContactMain06 {
         frame.getContentPane().add(buttonPanel, BorderLayout.NORTH);
         
         btnInsert = new JButton("새 연락처");
+        btnInsert.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ContactCreateFrame.showContactCreateFrame(frame);
+            }
+        });
         btnInsert.setFont(new Font("D2Coding", Font.PLAIN, 28));
         buttonPanel.add(btnInsert);
         
