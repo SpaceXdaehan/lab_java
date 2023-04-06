@@ -52,17 +52,27 @@ public class ContactMain06 {
         });
     }
 
+    // ContactUpdateFrame에서 연락처 업데이트를 성공했을 때 호출할 메서드.
+    public void notifyContactUpdated() {
+        resetTableModel(); // JTable을 처음부터 새로 그림.
+        JOptionPane.showMessageDialog(frame, "연락처 업데이트 성공!");
+    }
+    
     // ContactCreateFrame에서 새 연락처 저장을 성공했을 때 호출할 메서드.
     public void notifyContactCreated() {
         // JTable을 새로 그림.
+        resetTableModel();
+        
+        JOptionPane.showMessageDialog(frame, "새 연락처 저장 성공!");
+    }
+    
+    private void resetTableModel() {
         // 데이터가 비워진 모델을 새로 생성
         model = new DefaultTableModel(null, COLUMN_NAMES); 
         // 파일에 저장된 데이터를 다시 읽고 테이블 모델에 추가. 
         loadContactData();
         // 새롭게 만들어진 테이블 모델을 테이블에 세팅. 
         table.setModel(model);
-        
-        JOptionPane.showMessageDialog(frame, "새 연락처 저장 성공!");
     }
     
     /**
@@ -106,10 +116,22 @@ public class ContactMain06 {
         buttonPanel.add(btnInsert);
         
         btnUpdate = new JButton("수정");
+        btnUpdate.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                updateContact();
+            }
+        });
         btnUpdate.setFont(new Font("D2Coding", Font.PLAIN, 28));
         buttonPanel.add(btnUpdate);
         
         btnDelete = new JButton("삭제");
+        btnDelete.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                deleteContact();
+            }
+        });
         btnDelete.setFont(new Font("D2Coding", Font.PLAIN, 28));
         buttonPanel.add(btnDelete);
         
@@ -126,6 +148,49 @@ public class ContactMain06 {
         // TODO: 테이블 컬럼 이름의 폰트 변경.
         // TODO: 테이블 데이터 행의 폰트 변경.
         scrollPane.setViewportView(table); // 테이블을 스크롤페인에 넣음.
+    }
+
+    private void updateContact() {
+        int row = table.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(frame, 
+                    "업데이트할 행을 먼저 선택하세요...", 
+                    "경고", 
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        // ContactUpdateFrame을 생성해서 업데이트 창을 띄움.
+        // 새 창의 부모 컴포넌트(frame) - 업데이트 창을 띄울 좌표를 계산하기 위해서
+        // 선택된 테이블 행 인덱스 - 업데이트 창에서 수정 전의 연락처를 출력하기 위해서
+        // ContactMain의 주소 - 업데이트 성공했을 때 업데이트 창이 메인 창에게 알려주기 위해서
+        ContactUpdateFrame.showContactUpdateFrame(frame,  row, ContactMain06.this);
+    }
+
+    private void deleteContact() {
+        // 테이블에서 선택된 행의 인덱스를 찾음.
+        int row = table.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(
+                    frame, 
+                    "삭제하려는 행을 먼저 선택하세요...", 
+                    "경고", 
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        int confirm = JOptionPane.showConfirmDialog(
+                frame, 
+                "정말 삭제할까요?", 
+                "삭제 확인", 
+                JOptionPane.YES_NO_OPTION);
+        if (confirm == JOptionPane.YES_OPTION) {
+            dao.delete(row); // 리스트에서 연락처 삭제, 파일 업데이트.
+            model.removeRow(row); // JTable에서 행 삭제.
+            
+            JOptionPane.showMessageDialog(frame, "삭제 성공");
+        }
+        
     }
 
 }
