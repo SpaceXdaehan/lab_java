@@ -51,6 +51,20 @@ public class ContactMain06 {
         });
     }
 
+    // ContactCreateFrame에서 새 연락처 저장을 성공했을 때 호출할 메서드.
+    public void notifyContactCreated() {
+        // JTable을 새로 그림.
+        model = new DefaultTableModel(null, COLUMN_NAMES);
+        
+        List<Contact> list = dao.read();
+        for (Contact c : list) {
+            Object[] row = {c.getName(), c.getPhone()};
+            model.addRow(row);
+        }
+        
+        table.setModel(model);
+    }
+    
     /**
      * Create the application.
      */
@@ -83,7 +97,9 @@ public class ContactMain06 {
         btnInsert.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ContactCreateFrame.showContactCreateFrame(frame);
+                ContactCreateFrame.showContactCreateFrame(frame, ContactMain06.this);
+                // this - ActionListener 타입의 익명 객체
+                // ContactMain06.this - ContactMain06 타입의 객체
             }
         });
         btnInsert.setFont(new Font("D2Coding", Font.PLAIN, 28));

@@ -5,10 +5,6 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import edu.java.contact.model.Contact;
-import edu.java.contact05.ContactDaoImpl;
-
 import java.awt.BorderLayout;
 import java.awt.Component;
 
@@ -19,9 +15,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class ContactCreateFrame extends JFrame {
-    
-    private final ContactDaoImpl dao = ContactDaoImpl.getInstance();
+public class ContactUpdateFrame extends JFrame {
+
     private JPanel contentPane;
     private JPanel panel;
     private JPanel buttonPanel;
@@ -35,17 +30,16 @@ public class ContactCreateFrame extends JFrame {
     private JButton btnCancel;
 
     private Component parent; // 부모 컴포넌트(JFrame)를 저장하기 위한 필드.
-    private ContactMain06 app; // notifyContactCreated 메서드를 가지고 있는 객체.
     
     /**
      * Launch the application.
      */
-    public static void showContactCreateFrame(Component parent, ContactMain06 app) {
+    public static void showContactUpdateFrame(Component parent) {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
                 try {
-                    ContactCreateFrame frame = new ContactCreateFrame(parent, app);
+                    ContactUpdateFrame frame = new ContactUpdateFrame(parent);
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -57,14 +51,13 @@ public class ContactCreateFrame extends JFrame {
     /**
      * Create the frame.
      */
-    public ContactCreateFrame(Component parent, ContactMain06 app) {
+    public ContactUpdateFrame(Component parent) {
         this.parent = parent;
-        this.app = app;
         initialize(); // GUI 컴포넌트들을 생성하고 초기화.
     }
     
     public void initialize() {
-        setTitle("새 연락처 저장");
+        setTitle("연락처 업데이트");
         
         // 닫기(x) 버튼의 기본 동작을 현재 창만 닫기(dispose)로 설정.
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -123,11 +116,11 @@ public class ContactCreateFrame extends JFrame {
         buttonPanel = new JPanel();
         contentPane.add(buttonPanel, BorderLayout.SOUTH);
         
-        btnCreate = new JButton("저장");
+        btnCreate = new JButton("수정완료");
         btnCreate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                createNewContact();
+                // TODO
             }
         });
         btnCreate.setFont(new Font("D2Coding", Font.PLAIN, 28));
@@ -144,22 +137,5 @@ public class ContactCreateFrame extends JFrame {
         buttonPanel.add(btnCancel);
     }
 
-    private void createNewContact() {
-        // JTextField에서 이름/전화번호/이메일을 읽음.
-        String name = textName.getText();
-        String phone = textPhone.getText();
-        String email = textEmail.getText();
-        
-        // Contact 타입 객체 생성.
-        Contact contact = new Contact(0, name, phone, email);
-        
-        // 리스트에 추가. 파일 업데이트. -> DAO
-        dao.create(contact);
-        
-        // ContactMain에게 새 연락처가 저장됐다고 알려줌.
-        app.notifyContactCreated();
-        
-        // 현재 창 닫기
-        dispose();
-    }
+
 }
