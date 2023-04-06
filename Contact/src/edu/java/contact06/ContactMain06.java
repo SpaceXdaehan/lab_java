@@ -3,6 +3,7 @@ package edu.java.contact06;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
@@ -54,15 +55,14 @@ public class ContactMain06 {
     // ContactCreateFrame에서 새 연락처 저장을 성공했을 때 호출할 메서드.
     public void notifyContactCreated() {
         // JTable을 새로 그림.
-        model = new DefaultTableModel(null, COLUMN_NAMES);
-        
-        List<Contact> list = dao.read();
-        for (Contact c : list) {
-            Object[] row = {c.getName(), c.getPhone()};
-            model.addRow(row);
-        }
-        
+        // 데이터가 비워진 모델을 새로 생성
+        model = new DefaultTableModel(null, COLUMN_NAMES); 
+        // 파일에 저장된 데이터를 다시 읽고 테이블 모델에 추가. 
+        loadContactData();
+        // 새롭게 만들어진 테이블 모델을 테이블에 세팅. 
         table.setModel(model);
+        
+        JOptionPane.showMessageDialog(frame, "새 연락처 저장 성공!");
     }
     
     /**
