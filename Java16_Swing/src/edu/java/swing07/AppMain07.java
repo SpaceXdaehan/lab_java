@@ -4,12 +4,16 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AppMain07 {
     // JTable에서 사용할 컬럼 이름들
@@ -94,11 +98,23 @@ public class AppMain07 {
         frame.getContentPane().add(textMath);
         
         btnInsert = new JButton("입력");
+        btnInsert.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                insertScoreToTable();
+            }
+        });
         btnInsert.setFont(new Font("D2Coding", Font.PLAIN, 28));
         btnInsert.setBounds(12, 223, 188, 61);
         frame.getContentPane().add(btnInsert);
         
         btnDelete = new JButton("삭제");
+        btnDelete.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                deleteRowFromTable();
+            }
+        });
         btnDelete.setFont(new Font("D2Coding", Font.PLAIN, 28));
         btnDelete.setBounds(212, 223, 188, 61);
         frame.getContentPane().add(btnDelete);
@@ -113,4 +129,60 @@ public class AppMain07 {
         table.setModel(model);
         scrollPane.setViewportView(table);
     }
+
+    private void deleteRowFromTable() {
+        // 1. 테이블에서 삭제하기 위해 선택된 행의 인덱스를 찾음.
+        int index = table.getSelectedRow();
+        if (index == -1) { // 테이블에서 아무 행도 선택되지 않은 경우.
+            // TODO
+            return; // 메서드 종료
+        }
+        
+        // 2. 해당 인덱스의 행을 테이블 모델에서 삭제.
+        // TODO
+        model.removeRow(index);
+    }
+
+    private void insertScoreToTable() {
+        // 1. JTextField에서 3과목의 점수를 읽음.
+        int korean = 0;
+        int english = 0;
+        int math = 0;
+        try {
+            korean = Integer.parseInt(textKorean.getText());
+            english = Integer.parseInt(textEnglish.getText());
+            math = Integer.parseInt(textMath.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(
+                    frame, 
+                    "국어, 영어, 수학 점수는 반드시 정수로 입력: " + e.getMessage(), 
+                    "입력 에러", 
+                    JOptionPane.ERROR_MESSAGE);
+            
+            return; // 메서드 종료
+        }
+        
+        // 2. Score 타입 객체 생성.
+        Score score = new Score(korean, english, math);
+        
+        // 3. JTable에 행(row)을 추가.
+        Object[] row = {
+                score.getKorean(),
+                score.getEnglish(),
+                score.getMath(),
+                score.getTotal(),
+                score.getMean(),
+        };
+        model.addRow(row);
+        
+        // 모든 JTextField의 입력 내용을 지움.
+        clearAllTextFields();
+    }
+    
+    private void clearAllTextFields() {
+        textKorean.setText("");
+        textEnglish.setText("");
+        textMath.setText("");
+    }
+    
 }

@@ -38,10 +38,21 @@ public class Score {
         this.math = math;
     }
 
-    // TODO: 세 과목의 총점을 int 타입으로 리턴하는 메서드. getTotal.
+    // 세 과목의 총점을 int 타입으로 리턴하는 메서드. getTotal.
+    public int getTotal() {
+        return korean + english + math;
+    }
     
-    // TODO: 세 과목의 평균을 double 타입으로 리턴하는 메서드. getMean.
+    // 세 과목의 평균을 double 타입으로 리턴하는 메서드. getMean.
+    public double getMean() {
+        return (double) getTotal() / 3;
+    }
     
-    // TODO: toString override
+    // toString override
+    @Override
+    public String toString() {
+        return String.format("Score(korean=%d, english=%d, math=%d)", 
+                korean, english, math);
+    }
     
 }
