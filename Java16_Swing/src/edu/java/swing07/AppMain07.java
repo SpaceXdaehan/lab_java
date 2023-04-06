@@ -134,13 +134,25 @@ public class AppMain07 {
         // 1. 테이블에서 삭제하기 위해 선택된 행의 인덱스를 찾음.
         int index = table.getSelectedRow();
         if (index == -1) { // 테이블에서 아무 행도 선택되지 않은 경우.
-            // TODO
+            JOptionPane.showMessageDialog(
+                    frame, 
+                    "테이블에서 삭제할 행을 먼저 선택하세요...", 
+                    "경고", 
+                    JOptionPane.WARNING_MESSAGE);
+            
             return; // 메서드 종료
         }
         
         // 2. 해당 인덱스의 행을 테이블 모델에서 삭제.
-        // TODO
-        model.removeRow(index);
+        int confirm = JOptionPane.showConfirmDialog(
+                frame, 
+                index + " 인덱스 행을 정말 삭제할까요?", 
+                "삭제 확인", 
+                JOptionPane.YES_NO_OPTION);
+        
+        if (confirm == JOptionPane.YES_OPTION) {
+            model.removeRow(index);
+        }
     }
 
     private void insertScoreToTable() {
