@@ -66,3 +66,10 @@ select distinct deptno, job
 from emp
 order by deptno, job;
 
+-- distinct는 select 문장에서 오직 한 번만, 검색하려는 컬럼 이름 앞에서 사용됨.
+-- (예) select distinct col1, col2, col3 from tbl;
+-- order by는 컬럼 별로 정렬 기준(오름/내림차순)을 다르게 할 수 있음.
+-- (예) select col1, col2 from tbl order by col1 asc, col2 desc;
+select distinct deptno, job
+from emp
+order by deptno, job desc; -- dept 오름차순, job 내림차순 정렬
