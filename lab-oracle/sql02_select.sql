@@ -29,3 +29,40 @@ from dept;
 select dname || ' 부서는 ' || loc || '에 있습니다.' as "부서 위치"
 from dept;
 
+-- 정렬해서 출력하기:
+-- select 컬럼 이름, ... from 테이블 이름 order by 컬럼 [asc/desc];
+-- asc: 오름차순 정렬(ascending order). 정렬의 기본값. asc는 생략 가능.
+-- desc: 내람차순 정렬(descending order).
+
+-- 부서 테이블의 모든 내용을 검색, 부서 번호 내림차순으로 출력.
+select * from dept order by deptno desc;
+
+-- 부서 테이블의 모든 내용을 검색, 부서 이름 오름차순으로 출력.
+select * from dept order by dname; -- order by dname asc
+
+-- 부서 테이블의 모든 내용을 검색, 부서 위치 내림차순으로 출력.
+select * from dept order by loc desc;
+
+-- 직원 테이블에서 부서 번호, 사번, 이름을 검색
+-- 정렬 조건: (1) 부서 번호, (2) 사번 오름차순
+select deptno, empno, ename
+from emp
+order by deptno, empno;
+
+-- 직원 테이블 부서번호, 직무, 이름을 검색.
+-- 정렬 순서: (1) 부서 번호, (2) 직무 오름차순
+select deptno, job, ename
+from emp
+order by deptno, job;
+
+-- 중복되지 않는 결과만 출력하기.
+-- select distinct 컬럼 이름, ... from 테이블;
+-- 직원 테이블에서 직무를 검색
+select distinct job from emp;
+
+-- 직원 테이블에서 중복되지 않는 부서번호, 직무를 출력.
+-- 정렬 순서: (1) 부서 번호, (2) 직무 오름차순
+select distinct deptno, job
+from emp
+order by deptno, job;
+
