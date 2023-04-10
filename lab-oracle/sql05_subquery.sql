@@ -81,7 +81,45 @@ select ename, sal, deptno
 from emp
 where deptno = (select deptno from dept where loc = 'CHICAGO');
 
+-- 단일행 서브쿼리: 서브쿼리의 결과가 행이 1개 이하인 경우.
+-- 다중행 서브쿼리: 서브쿼리의 결과가 2개 이상의 행인 경우.
+-- 다중행 서브쿼리에서는 한 개의 값과 단순 비교(=, !=, >, <, ...)를 할 수 없음!
+-- 다중행 서브쿼리에서는 in, any, all과 같은 키워드를 함께 사용해야 함!
 
+-- 각 부서에서 급여를 가장 많이 받는 직원의 모든 정보(사번, 이름, 급여, ...)을 검색.
+select *
+from emp
+where (deptno, sal) in (
+    select deptno, max(sal)
+    from emp
+    group by deptno
+)
+order by deptno;
 
+-- 각 부서에서 급여가 가장 적은 직원들의 모든 정보 출력
+select *
+from emp
+where (deptno, sal) in (
+    select deptno, min(sal)
+    from emp
+    group by deptno
+)
+order by deptno;
 
+-- 다중행 서브쿼리에서 any와 all:
+--   any: 여러개 중에서 적어도 하나.
+--   all: 여러개 모두.
 
+select *
+from emp
+where sal < all (
+    select sal from emp where deptno = 10
+);
+-- sal < 2450 and sal < 5000 and sal < 1300
+
+select *
+from emp
+where sal < any (
+    select sal from emp where deptno = 10
+);
+-- sal < 2450 or sal < 5000 or sal < 1300
