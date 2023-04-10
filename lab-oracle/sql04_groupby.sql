@@ -43,3 +43,32 @@ from emp
 group by deptno
 order by deptno;
 
+-- 모든 문제에서 소수점은 반올림해서 소수점이하 2자리까리만 표시하세요.
+-- Ex1. 부서별 급여 평균, 표준편차를 부서번호 오름차순으로 출력.
+select deptno, round(avg(sal), 2) as "AVG_SAL", round(stddev(sal), 2) as "STD_SAL"
+from emp
+group by deptno
+order by deptno;
+
+-- Ex2. 직무별 직무, 직원수, 급여 최댓값, 최솟값, 평균을 직무 오름차순으로 출력.
+select job, count(job) as "COUNT", 
+    max(sal) as "MAX_SAL", min(sal) as "MIN_SAL", 
+    round(avg(sal), 2) as "AVG_SAL"
+from emp
+group by job
+order by job;
+
+-- Ex3. 부서별, 직무별 부서번호, 직무, 직원수, 급여 평균을 검색
+--      정렬 순서: (1) 부서번호 (2) 직무
+select deptno, job, count(*) as "COUNT", round(avg(sal), 2) as "AVG_SAL"
+from emp
+group by deptno, job
+order by deptno, job;
+
+-- Ex4. 입사연도별 사원수를 검색. (힌트) to_char(날짜, 포맷) 이용.
+select to_char(hiredate, 'YYYY') as "YEAR", count(*) as "COUNT"
+from emp
+group by to_char(hiredate, 'YYYY')
+order by YEAR;
+
+
