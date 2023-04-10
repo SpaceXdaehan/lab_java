@@ -71,4 +71,51 @@ from emp
 group by to_char(hiredate, 'YYYY')
 order by YEAR;
 
+/* select 문장 순서:
+   select 컬럼, ...                               [5]
+   from 테이블                                    [1]
+   where (그룹을 묶기 전에 검사할) 조건식         [2]
+   group by 그룹으로 묶어줄 컬럼, ...             [3]
+   having 그룹을 묶은 다음에 검사할 조건식        [4]
+   order by 출력 순서를 결정하기 위한 컬럼, ...;  [6]
+*/
 
+-- 부서별 급여 평균 검색. 부서별 급여 평균이 2000 이상인 부서만 검색.
+select deptno, avg(sal)
+from emp
+group by deptno
+having avg(sal) >= 2000
+order by deptno;
+
+-- mgr 컬럼이 null이 아닌 직원들 중에서 부서별 급여 평균을 검색. 부서번호 오름차순.
+select deptno, avg(sal)
+from emp
+where mgr is not null
+group by deptno
+order by deptno;
+
+-- 직무별 사원수를 검색. PRESIDENT는 검색 제외. 직무별 사원수가 3명 이상인 직무만 검색.
+-- 직무의 오름차순 정렬.
+select job, count(job)
+from emp
+where job != 'PRESIDENT'
+group by job
+having count(job) >= 3
+order by job;
+
+select job, count(job)
+from emp
+group by job
+having job != 'PRESIDENT' and count(job) >= 3
+order by job;
+
+-- 입사연도, 부서번호, 입사연도별 부서별 사원수 검색
+-- 1980년은 검색에서 제외.
+-- 연도별 부서별 사원수가 2명 이상인 경우만 선택.
+-- (1) 연도별, (2)부서별 오름차순 출력.
+select to_char(hiredate, 'YYYY') as "YEAR", deptno, count(*)
+from emp
+where to_char(hiredate, 'YYYY') != '1980'
+group by to_char(hiredate, 'YYYY'), deptno
+having count(*) >= 2
+order by YEAR, deptno;
