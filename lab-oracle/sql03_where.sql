@@ -84,3 +84,38 @@ from emp
 where job not in ('CLERK', 'ANALYST', 'MANAGER')
 order by empno;
 
+-- 숫자 타입뿐만 아니라 문자열, 날짜 타입들도 대소비교(>, <, >=, <=, ...)가 가능.
+-- (예) 'a' < 'b', 2023/04/10 < 2023/04/11
+
+-- 직원 테이블에서 '1987/01/01' 이후에 입사한 직원들의 모든 레코드를 검색.
+-- 입사일 오름차순으로 정렬.
+select *
+from emp
+where hiredate >= '1987/01/01';
+-- Oracle이 hiredate 컬럼의 값(Date 타입)을 문자열로 변환해서 '1987/01/01'과 비교.
+
+select *
+from emp
+where hiredate >= to_date('1987/01/01');
+
+-- 특정 문자열로 시작하거나, 특정 문자열이 포함된 값을 찾는 문장 -> LIKE 검색
+-- LIKE 검색: 
+--   (1) %: 글자수 제한 없음. 
+--   (2) underscore(_): underscore 자리에 어떤 글자가 와도 상관없음.
+-- 'A'로 시작하는 이름을 갖는 직원들의 이름을 오름차순으로 출력.
+select ename
+from emp
+where ename like 'A%'
+order by ename;
+
+-- 직무 첫 문자는 어떤 문자이든 상관 없고, 나머지 문자열은 'LERK'로 끝나는 직무.
+select job
+from emp
+where job like '_LERK';
+
+-- 30번 부서에서 근무하는 직무가 'SALES'로 시작하는 직원들의
+-- 사번, 이름, 급여, 부서번호, 직무를 검색. 사번 오름차순 정렬.
+select empno, ename, sal, deptno, job
+from emp
+where deptno = 30 and job like 'SALES%'
+order by empno;
