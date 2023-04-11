@@ -68,3 +68,39 @@ where e.deptno(+) = d.deptno; -- right outer join
 -- inner join에서 inner는 생략 가능. inner join = join
 -- left/right/full outer join에서 outer 생략가능함. left outer join = left join
 
+-- self-join: 같은 테이블에서 join하는 것.
+-- 사번, 이름, 매니저 사번, 매니저 이름 검색.
+select e1.empno as "사번", e1.ename as "직원 이름",
+    e1.mgr as "매니저 사번", e2.ename as "매니저 이름"
+from emp e1
+    join emp e2 on e1.mgr = e2.empno
+order by e1.empno;
+
+select e1.empno as "사번", e1.ename as "직원 이름",
+    e1.mgr as "매니저 사번", e2.ename as "매니저 이름"
+from emp e1, emp e2 
+where e1.mgr = e2.empno
+order by e1.empno;
+
+-- equi join: join 조건이 =를 사용해서 만들어지는 경우.
+-- non-equi join: join 조건이 부등식(>, >=, <, <=, ...)을 사용해서 만들어지는 경우.
+
+-- emp, salgrade 테이블을 사용. 사번, 이름, 급여, 급여 등급을 검색. 사번 오름차순 정렬.
+select e.empno, e.ename, e.sal, s.grade
+from emp e
+    join salgrade s on e.sal between s.losal and s.hisal
+order by e.empno;
+    -- on e.sal >= s.losal and e.sal <= s.hisal
+
+select e.empno, e.ename, e.sal, s.grade
+from emp e, salgrade s
+where e.sal between s.losal and s.hisal
+order by e.empno;
+
+-- ex1. 직원 이름, 직원 근무 도시를 검색. 근무 도시 오름차순 정렬.
+-- ex2. 직원 이름, 매니저 이름, 급여, 급여 등급을 검색. 매니저 오름차순, 급여 등급 오름차순.
+-- ex3. 직원 이름, 부서 이름, 급여, 급여 등급을 검색. 부서 이름 오름차순, 급여 등급 오름차순.
+-- ex4. 부서 이름, 부서 위치, 부서의 직원수를 검색. 부서 번호 오름 차순.
+-- ex5. 부서 번호, 부서 이름, 부서 직원수, 부서의 급여 최솟값, 부서의 급여 최댓값 검색.
+-- 부서 번호 오름 차순.
+
