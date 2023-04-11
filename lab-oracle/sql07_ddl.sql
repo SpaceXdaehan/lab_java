@@ -36,21 +36,57 @@ create table students (
     birthday    date
 );
 
+/*
+테이블에 행(row) 추가(삽입):
+insert into 테이블 (컬럼1, 컬럼2, ...) values (값1, 값2, ...); 
 
+insert into 테이블 values (값1, ...);
+- values에서 나열하는 값의 개수는 테이블의 컬럼 개수와 같아야, 값의 순서는 컬럼의 순서와 같아야 함.
+*/
 
+insert into students
+values (1, '홍길동', '2023/04/11');
 
+insert into students
+values (2, '홍길동');
+--> ORA-00947: 값의 수가 충분하지 않습니다
 
+insert into students
+values (2, '홍길동', null);
 
+insert into students (stuno, stuname)
+values (3, '홍길동');
 
+insert into students
+values ('홍길동', 4, to_date('2000/01/01'));
+--> ORA-01722: 수치가 부적합합니다
 
+insert into students (stuname, stuno, birthday)
+values ('김길동', 5, to_date('2000/01/01'));
 
+insert into students (stuno)
+values (1234567); --> ORA-01438: 컬럼 자릿수보다 더 큰 수를  insert하려는 에러.
 
+insert into students (stuname)
+values ('abcdefghijk'); --> ORA-12899: 컬럼에서 지정한 문자열 길이보다 더 긴 문자열.
 
+select * from students;
 
+commit; -- 현재까지 작업 내용을 DB에 영구 저장.
 
+-- 테이블 생성할 때 컬럼의 기본값 설정하기:
+create table ex_user (
+    no          number(4),
+    userid      varchar2(20), -- 20 바이트까지의 문자열.
+    password    varchar2(100),
+    age         number(3) default 0,
+    created_date    date default sysdate
+);
 
+insert into ex_user (no, userid, password)
+values (1, 'guest', 'guest0000');
 
-
+select * from ex_user;
 
 
 
