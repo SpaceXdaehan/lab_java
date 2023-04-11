@@ -35,23 +35,3 @@ create table students (
     stuname     varchar2(10 char),
     birthday    date
 );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
