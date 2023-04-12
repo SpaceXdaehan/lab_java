@@ -64,11 +64,39 @@ create table ex_emp2 (
     constraint emp2_deptid_fk foreign key (deptid) references ex_dept (deptid)
 );
 
+insert into ex_emp1 values (1001, '오쌤', 10);
+--> ex_dept 테이블에 PK로 10이 생성되어져 있지 않기 때문에 에러가 발생.
+--> ex_emp1 테이블에 부서 아이디를 insert하기 전에, 부서 아이디가 ex_dept 테이블에 먼저 만들어져 있어야 함.
+
+insert into ex_dept values (10, '개발1팀');
+insert into ex_dept values (20, '인사팀');
+
+insert into ex_emp1 values (1001, '오쌤', 10);
+insert into ex_emp1 values (2001, '홍길동', 20);
+
+insert into ex_emp1 values (3001, '김길동', 30); --> FK 제약조건 위배.
+
+select * from ex_dept;
+select * from ex_emp1;
+
+commit;
 
 
+-- DDL(Data Definition Language): 데이터 정의 언어.
+-- create, alter, truncate, drop
 
+-- 테이블 삭제:
+-- truncate table 테이블이름; - 테이블의 모든 행(레코드)을 삭제하고, 테이블 이름만 남기는 것.
+-- drop table 테이블이름; - 테이블 (객체)가 삭제됨.
+-- delete from table과 비교!
 
+truncate table ex_dept;
+--> PK 컬럼이 다른 테이블에서 FK로 참조되고 있기 때문에 삭제가 안됨!
+--> 참조하고 있는 다른 테이블의 레코드들을 먼저 삭제해야 테이블 삭제가 가능.
 
+truncate table ex_emp1; --> 성공
+select * from ex_emp1;
 
+truncate table ex_dept; --> 참조하는 다른 테이블의 레코드가 없기 때문에 삭제 성공.
 
-
+drop table ex_emp2; --> 테이블 자체가 삭제됨.
