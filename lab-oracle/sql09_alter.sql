@@ -52,3 +52,6 @@ desc student;
 
 alter table student modify sname not null;
 desc student;
+
+-- modify는 제약조건 내용을 변경할 수 없음!
+-- drop constraint ... (제약조건 삭제) --> add constraint ... (새로운 제약조건 추가)
