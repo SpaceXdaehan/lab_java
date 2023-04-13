@@ -1,16 +1,20 @@
 package edu.java.jdbc01;
 
+// OracleConnect 인터페이스에서 static로 선언된 모든 상수 이름들을 임포트.
+import static edu.java.jdbc.model.Blog.Entity.*;
+import static edu.java.jdbc.oracle.OracleConnect.*;
+
 // JDK 클래스, 인터페이스
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.time.LocalDateTime;
 
+import edu.java.jdbc.model.Blog;
 // Oracle JDBC 라이브러리 클래스
 import oracle.jdbc.OracleDriver;
-
-// OracleConnect 인터페이스에서 static로 선언된 모든 상수 이름들을 임포트.
-import static edu.java.jdbc.oracle.OracleConnect.*;
 
 /*
  * JDBC(Java Database Connectivity):
@@ -30,7 +34,7 @@ import static edu.java.jdbc.oracle.OracleConnect.*;
  *    - executeQuery(): DQL. select 문장.
  *    - executeUpdate(): DML. insert, update, delete 문장.
  * 7. 결과 처리 - 화면 출력.
- * 8. 사용했던 모든 리소스들(Connection, Statement)을 해제(close).
+ * 8. 사용했던 모든 리소스들(Connection, Statement, ResultSet)을 해제(close).
  */
 
 public class JdbcMain01 {
@@ -38,7 +42,8 @@ public class JdbcMain01 {
     public static void main(String[] args) {
         
         Connection conn = null;
-        Statement stmt = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
         try {
             // 3. Oracle JDBC driver(라이브러리) 등록.
             DriverManager.registerDriver(new OracleDriver());
@@ -53,11 +58,30 @@ public class JdbcMain01 {
             stmt = conn.prepareStatement(sql);
             System.out.println("stmt=" + stmt);
             
+            // 6. Statement 실행
+            rs = stmt.executeQuery(); // select 문장 실행.
+            System.out.println("rs=" + rs);
+            
+            // 7. 결과 처리
+            while (rs.next()) { // ResultSet에 행(row) 데이터가 있는 경우
+                Integer id = rs.getInt(COL_ID); // id 컬럼의 값을 읽고 int 타입으로 리턴.
+                String title = rs.getString(COL_TITLE); // title 컬럼의 값을 Strng 타입으로 리턴.
+                String content = rs.getString(COL_CONTENT);
+                String author = rs.getString(COL_AUTHOR);
+                LocalDateTime createdTime = rs.getTimestamp(COL_CREATED_TIME).toLocalDateTime();
+                // created_date 컬럼의 값을 Timestamp 타입으로 읽고, LocalDateTime 타입으로 변환해서 리턴.
+                LocalDateTime modifiedTime = rs.getTimestamp(COL_MODIFIED_TIME).toLocalDateTime();
+                
+                Blog blog = new Blog(id, title, content, author, createdTime, modifiedTime);
+                System.out.println(blog);
+            }
+            
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             // 리소스 해제 - 리소스가 생성된 순서의 반대로 close를 호출.
             try {
+                rs.close();
                 stmt.close();
                 conn.close();
                 System.out.println("오라클 DB 접속 해제 성공");

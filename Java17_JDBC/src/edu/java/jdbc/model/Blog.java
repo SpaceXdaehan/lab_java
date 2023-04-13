@@ -7,6 +7,17 @@ import java.time.LocalDateTime;
 // 테이블의 컬럼들을 클래스의 필드로 선언.
 
 public class Blog {
+    // 테이블 이름과 컬럼 이름들을 상수로 정의.
+    public interface Entity {
+        String TBL_NAME = "BLOGS";
+        String COL_ID = "ID";
+        String COL_TITLE = "TITLE";
+        String COL_CONTENT = "CONTENT";
+        String COL_AUTHOR = "AUTHOR";
+        String COL_CREATED_TIME = "CREATED_TIME";
+        String COL_MODIFIED_TIME = "MODIFIED_TIME";
+    }
+    
     // field
     private Integer id; // 글 번호. primary key.
     private String title; // 글 제목.
