@@ -1,3 +1,9 @@
+-- 새로운 사용자 계정 생성하고 권한 부여하기:
+-- SYSTEM 계정에서 아래 3개의 SQL 문장들을 차례로 실행.
+alter session set "_ORACLE_SCRIPT" = true;
+create user scott identified by tiger;
+grant dba to scott;
+
 -- 연락처(Contact) 테이블 생성
 -- JDBC: 자바 프로그램으로 연락처 테이블을 관리
 -- CRUD(Create, Read, Update, Delete)
@@ -36,3 +42,13 @@ where cid = 1;
 delete from contacts where cid = 1;
 
 commit;
+
+-- 검색 기능
+select * from contacts
+where lower(name) like lower('%ABC%')
+    or
+    lower(phone) like lower('%ABC%')
+    or
+    lower(email) like lower('%ABC%')
+order by cid;
+
