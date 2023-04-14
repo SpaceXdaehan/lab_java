@@ -19,7 +19,7 @@ public interface ContactDao {
     /**
      * DB contacts 테이블에서 primary key로 연락처 정보를 검색. 
      * 
-     * @param cid 검색한 primary key.
+     * @param cid 검색할 primary key.
      * @return cid가 존재하면 Contact 타입 객체를 리턴. cid가 없으면 null을 리턴.
      */
     Contact read(Integer cid);

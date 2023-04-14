@@ -29,7 +29,7 @@ public class ContactDaoImpl implements ContactDao {
     }
 
     // 오라클 DB에 접속한 Connection 객체를 리턴.
-    private Connection getConnection() throws SQLException {
+    private Connection getConnection() throws SQLException  {
         // 오라클 JDBC 드라이버(라이브러리)를 등록.
         DriverManager.registerDriver(new OracleDriver());
         // 오라클 DB에 접속.
@@ -89,21 +89,110 @@ public class ContactDaoImpl implements ContactDao {
         return list;
     }
 
+    // select * from contacts where cid = ?;
+    private static final String SQL_SELECT_BY_ID = 
+            "select * from " + TBL_NAME + " where " + COL_CID + " = ?";
+    
     @Override
     public Contact read(Integer cid) {
-        // TODO Auto-generated method stub
-        return null;
+        Contact contact = null; // select 결과를 저장하고 리턴하기 위한 변수.
+        
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            System.out.println(SQL_SELECT_BY_ID);
+            stmt = conn.prepareStatement(SQL_SELECT_BY_ID);
+            stmt.setInt(1, cid);
+            rs = stmt.executeQuery();
+            if (rs.next()) { // 검색된 행(row) 데이터가 있다면
+                int id = rs.getInt(COL_CID);
+                String name = rs.getString(COL_NAME);
+                String phone = rs.getString(COL_PHONE);
+                String email = rs.getString(COL_EMAIL);
+                contact = new Contact(id, name, phone, email);
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                closeResources(conn, stmt, rs);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        
+        return contact;
     }
 
+    // insert into contacts (name, phone, email) values (?, ?, ?);
+    private static final String SQL_INSERT = 
+            "insert into " + TBL_NAME 
+            + " (" + COL_NAME + ", " + COL_PHONE + ", " + COL_EMAIL + ") "
+            + " values(?, ?, ?)";
+    
     @Override
     public int create(Contact contact) {
-        // TODO Auto-generated method stub
-        return 0;
+        int result = 0; // insert 결과를 저장하고 리턴할 변수.
+        
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        try {
+            conn = getConnection();
+            System.out.println(SQL_INSERT);
+            stmt = conn.prepareStatement(SQL_INSERT);
+            stmt.setString(1, contact.getName());
+            stmt.setString(2, contact.getPhone());
+            stmt.setString(3, contact.getEmail());
+            result = stmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                closeResources(conn, stmt);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        
+        return result;
     }
 
+    // update contacts set name = ?, phone = ?, email = ? where cid = ?;
+    private static final String SQL_UPDATE = 
+            "update " + TBL_NAME
+            + " set " + COL_NAME + " = ?, " + COL_PHONE + " = ?, " + COL_EMAIL + " = ? "
+            + " where " + COL_CID + " = ?";
+    
     @Override
     public int update(Contact contact) {
-        // TODO Auto-generated method stub
+        int result = 0; // update 결과를 저장하고 리턴할 변수.
+        
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        try {
+            conn = getConnection();
+            System.out.println(SQL_UPDATE);
+            stmt = conn.prepareStatement(SQL_UPDATE);
+            stmt.setString(1, contact.getName());
+            stmt.setString(2, contact.getPhone());
+            stmt.setString(3, contact.getEmail());
+            stmt.setInt(4, contact.getCid());
+            result = stmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                closeResources(conn, stmt);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        
         return 0;
     }
 
