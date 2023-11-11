@@ -27,7 +27,7 @@ interface Buyer {
         System.out.println("구매자 등록");
     }
 }
-
+ 
 interface Seller {
     void sell(); // public abstract 메서드
     
