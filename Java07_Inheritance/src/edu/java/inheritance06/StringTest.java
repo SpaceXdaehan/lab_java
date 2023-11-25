@@ -17,6 +17,6 @@ public class StringTest {
         System.out.println(s3 == s4);
         //-> false: 생성자는 호출할 때마다 새로운 객체를 힙(heap) 메모리에 생성.
 
-    }
+    } 
 
 }
